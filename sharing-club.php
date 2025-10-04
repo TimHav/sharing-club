@@ -28,7 +28,8 @@ function scwp_validate_lending($item){
         if($n=='comment_karma' && !preg_match("/^[0-5]?$/", $v) )$messages[] = __('Please enter a rating between 0 and 5 (or leave empty).', 'sharing-club');
         if($n=='comment_content' && !is_string($v))$messages[] = __('Please enter a valid comment.', 'sharing-club');
         if(($n=='comment_date'||$n=='comment_date_gmt') && $v!='00-00-0000'){
-            list($dd, $mm, $yyyy) = explode('-', $v);
+            list($yyyy, $mm, $dd) = explode('-', $v);
+            var_dump($yyyy, $mm, $dd);
             if ( !@checkdate($mm,$dd,$yyyy) ) {
                     $messages[] = __('Please enter a valid date.', 'sharing-club');
             }

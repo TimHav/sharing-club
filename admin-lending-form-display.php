@@ -14,8 +14,8 @@ $default = array(
     'user_id' => '',
     'comment_content'=>'',
     'comment_karma'=>'',
-    'comment_date' => date('d-m-Y'),
-    'comment_date_gmt' => date('d-m-Y'),
+    'comment_date' => date('Y-m-d'),
+    'comment_date_gmt' => (new DateTime('+4 weeks'))->format('Y-m-d'),
     'comment_type' => 'lending',
     'comment_agent'=>'',
 );
@@ -25,7 +25,6 @@ function scwp_sanitize_date($date){
 }
 function scwp_prepare_date($date){
     // reformat
-    $date = implode('-', array_reverse(explode('-', $date)));
     $date .= ' 00:00:00';
     return $date;
 }
@@ -42,7 +41,7 @@ if (wp_verify_nonce(@$_REQUEST['nonce'], basename(__FILE__))) {
     $item['comment_karma']      = sanitize_text_field($item['comment_karma']);
     $item['comment_content']    = sanitize_text_field($item['comment_content']);
     $item['comment_agent']      = sanitize_text_field($item['comment_agent']);
-    
+
     // validate data, and if all ok save item to database
     // if id is zero insert otherwise update
     $item_valid = scwp_validate_lending($item);
@@ -70,8 +69,8 @@ if (wp_verify_nonce(@$_REQUEST['nonce'], basename(__FILE__))) {
         $notice = $item_valid;
     }
     // reverse the dates back
-    $item['comment_date'] = scwp_sanitize_date($_REQUEST['comment_date']);
-    $item['comment_date_gmt'] = scwp_sanitize_date($_REQUEST['comment_date_gmt']);
+    $item['comment_date'] = $_REQUEST['comment_date'];
+    $item['comment_date_gmt'] = $_REQUEST['comment_date_gmt'];
 }
 else {
     // if this is not post back we load item to edit or give new one to create
@@ -79,7 +78,7 @@ else {
     if (isset($_REQUEST['ID'])) {
         // escape the date_format string with %%
         $id = intval($_REQUEST['ID']);
-        $item = $wpdb->get_row($wpdb->prepare("SELECT comment_ID, user_id, comment_post_ID, DATE_FORMAT(comment_date, '%%d-%%m-%%Y') AS comment_date, DATE_FORMAT(comment_date_gmt, '%%d-%%m-%%Y') AS comment_date_gmt, comment_karma, comment_content, comment_agent FROM ".$wpdb->comments." WHERE comment_ID = %s", $id), ARRAY_A);
+        $item = $wpdb->get_row($wpdb->prepare("SELECT comment_ID, user_id, comment_post_ID, DATE_FORMAT(comment_date, '%%Y-%%m-%%d') AS comment_date, DATE_FORMAT(comment_date_gmt, '%%Y-%%m-%%d') AS comment_date_gmt, comment_karma, comment_content, comment_agent FROM ".$wpdb->comments." WHERE comment_ID = %s", $id), ARRAY_A);
         if (!$item) {
             $item = $default;
             $notice = __('Item not found', 'sharing-club');
@@ -150,7 +149,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <label for="name"><?php _e('Lending date', 'sharing-club')?></label>
         </th>
         <td>
-            <input id="comment_date" name="comment_date" type="text" style="width: 95%" value="<?php echo esc_attr($item['comment_date'])?>" size="50" class="datepicker" placeholder="<?php _e('YYYY-MM-DD', 'sharing-club')?>" required />
+            <input id="comment_date" name="comment_date" type="date" value="<?php echo esc_attr($item['comment_date'])?>" size="20" required />
         </td>
     </tr>
     <tr class="form-field">
@@ -158,7 +157,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <label for="name"><?php _e('Return date', 'sharing-club')?></label>
         </th>
         <td>
-            <input id="comment_date_gmt" name="comment_date_gmt" type="text" style="width: 95%" value="<?php echo esc_attr($item['comment_date_gmt'])?>" size="50" class="datepicker" placeholder="<?php _e('YYYY-MM-DD', 'sharing-club')?>" required />
+            <input id="comment_date_gmt" name="comment_date_gmt" type="date" value="<?php echo esc_attr($item['comment_date_gmt'])?>" size="20" required />
         </td>
     </tr>
     <tr class="form-field">
