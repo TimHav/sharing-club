@@ -29,7 +29,6 @@ function scwp_validate_lending($item){
         if($n=='comment_content' && !is_string($v))$messages[] = __('Please enter a valid comment.', 'sharing-club');
         if(($n=='comment_date'||$n=='comment_date_gmt') && $v!='00-00-0000'){
             list($yyyy, $mm, $dd) = explode('-', $v);
-            var_dump($yyyy, $mm, $dd);
             if ( !@checkdate($mm,$dd,$yyyy) ) {
                     $messages[] = __('Please enter a valid date.', 'sharing-club');
             }
