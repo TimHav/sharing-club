@@ -14,8 +14,8 @@ $default = array(
     'user_id' => '',
     'comment_content'=>'',
     'comment_karma'=>'',
-    'comment_date' => '00-00-0000',
-    'comment_date_gmt' => '00-00-0000',
+    'comment_date' => date('d-m-Y'),
+    'comment_date_gmt' => date('d-m-Y'),
     'comment_type' => 'lending',
     'comment_agent'=>'',
 );
