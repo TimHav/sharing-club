@@ -41,9 +41,10 @@ function scwp_validate_lending($item){
 
 function scwp_generate_select($selector_id, $table, $selected = 0, $label = NULL, $where = NULL) {
     global $wpdb;
-    if($label==NULL)$label = $select_id;
+    if($label==NULL)$label = $selector_id;
     $query = "SELECT ID, $label AS label FROM ".$wpdb->$table;
     if($where)$query .= ' WHERE '.$where;
+    $query .= " ORDER BY " . ($label ? $label : $selector_id);
     $data = $wpdb->get_results($query);
     echo '<select name="'. $selector_id .'">';
     foreach ($data as $r) {
