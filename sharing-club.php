@@ -151,6 +151,22 @@ function scwp_init() {
 }
 add_action('init', 'scwp_init');
 
+function scwp_cookies(){
+    if (!isset($_REQUEST['comment_date_gmt'])) {
+        return;
+    }
+    $cookie_options = array(
+        'expires' => time() + 3600,
+        'path' => '/',
+        'domain' => $_SERVER['HTTP_HOST'],
+        'secure' => is_ssl(),
+        'httponly' => true,
+        'samesite' => 'Strict'
+    );
+    setcookie('scwp_return_date', $_REQUEST['comment_date_gmt'], $cookie_options);
+}
+add_action('admin_init', 'scwp_cookies');
+
 function scwp_display_lending_table(){
     require_once plugin_dir_path( __FILE__ ) . 'admin-lending-table-display.php';
 }

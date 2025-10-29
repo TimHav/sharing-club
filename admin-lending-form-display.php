@@ -15,7 +15,7 @@ $default = array(
     'comment_content'=>'',
     'comment_karma'=>'',
     'comment_date' => date('Y-m-d'),
-    'comment_date_gmt' => (new DateTime('+4 weeks'))->format('Y-m-d'),
+    'comment_date_gmt' => $_COOKIE['scwp_return_date'] ?? (new DateTime('+4 weeks'))->format('Y-m-d'),
     'comment_type' => 'lending',
     'comment_agent'=>'',
 );
