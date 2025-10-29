@@ -82,6 +82,15 @@ class Lending_Table extends WP_List_Table {
         return $actions;
     }
 
+    function extra_tablenav($which) {
+        if ($which === 'top') {
+            echo '<div class="alignleft actions">';
+            scwp_generate_select('user_id', 'users', intval($_REQUEST['user_id']), 'user_nicename', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
+            submit_button('Filter', 'button', 'filter_action', false);
+            echo '</div>';
+        }
+    }
+
     function process_bulk_action() {
         global $wpdb;
         $table_name = sanitize_key($wpdb->comments); // do not forget about tables prefix
@@ -123,7 +132,9 @@ class Lending_Table extends WP_List_Table {
         
         $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_key($_REQUEST['orderby']) : 'comment_date_gmt'; //If no sort, default to title
         $order = (!empty($_REQUEST['order'])) ? sanitize_key($_REQUEST['order']) : 'desc'; //If no order, default to asc
-        
+
+        $filter = !empty($_REQUEST['user_id']) ? ' AND user_id = ' . intval($_REQUEST['user_id']) : '';
+
         $query = "SELECT comment_ID as ID, user_nicename, post_title AS name, comment_agent AS note, DATE_FORMAT(comment_date, '%d/%m/%Y') AS fr_date_start, DATE_FORMAT(comment_date_gmt, '%d/%m/%Y') AS fr_date_end,
         CASE WHEN comment_date = '0000-00-00' THEN 'requested'
         WHEN comment_date_gmt > CURRENT_TIMESTAMP OR comment_date_gmt = '0000-00-00' THEN 'na'
@@ -132,6 +143,7 @@ class Lending_Table extends WP_List_Table {
         LEFT JOIN ".$wpdb->posts." AS objects ON (objects.ID = comment_post_ID)
         LEFT JOIN ".$wpdb->users." AS users ON (users.ID = user_id) 
         WHERE post_type = 'shared_item'
+        $filter
         ORDER BY FIELD(availability, 'requested', 'na', 'available'), $orderby $order";
         $data = $wpdb->get_results($query);
 
