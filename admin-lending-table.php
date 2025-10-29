@@ -76,8 +76,8 @@ class Lending_Table extends WP_List_Table {
     
     function get_bulk_actions() {
         $actions = array(
+            'return' => __('Mark as returned', 'sharing-club'),
             'delete' => __('Delete', 'sharing-club'),
-            'return'    => __('Mark as returned', 'sharing-club'),
         );
         return $actions;
     }
