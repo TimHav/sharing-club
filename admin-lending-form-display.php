@@ -50,12 +50,13 @@ if (wp_verify_nonce(@$_REQUEST['nonce'], basename(__FILE__))) {
         $item['comment_date_gmt']   = scwp_prepare_date(scwp_sanitize_date($item['comment_date_gmt']));
         if ($item['comment_ID'] == 0) {
             $result = $wpdb->insert($table_name, $item);
-            $item['comment_ID'] = $wpdb->insert_id;
             if ($result!==false) {
                 $message = __('Item was successfully saved', 'sharing-club');
             } else {
                 $notice = __('There was an error while saving item', 'sharing-club');
             }
+            // Clear the object so the user can immediately add another one with the same data
+            $item['comment_post_ID'] = '';
         } else {
             $result = $wpdb->update($table_name, $item, array('comment_ID' => $item['comment_ID']));
             if ($result!==false) {
