@@ -53,8 +53,6 @@ class Lending_Table extends WP_List_Table {
             'user_nicename'     => array('user_nicename',false),
             'fr_date_start'     => array('fr_date_start',false),
             'fr_date_end'     => array('fr_date_end',false),
-            'availability'     => array('availability',false),
-            'note' => array('note',false),
         );
         return $sortable_columns;
     }
