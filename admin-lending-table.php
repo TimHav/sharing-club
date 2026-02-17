@@ -39,7 +39,7 @@ class Lending_Table extends WP_List_Table {
         $columns = array(
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
             'name'     => __('Object', 'sharing-club'),
-            'user_nicename' => __('User', 'sharing-club'),
+            'username' => __('User', 'sharing-club'),
             'fr_date_start' => __('Lending date', 'sharing-club'),
             'fr_date_end' => __('Return date', 'sharing-club'),
             'availability' => __('Availability', 'sharing-club'),
@@ -50,7 +50,7 @@ class Lending_Table extends WP_List_Table {
     function get_sortable_columns() {
         $sortable_columns = array(
             'name'     => array('name',false),
-            'user_nicename'     => array('user_nicename',false),
+            'username'     => array('username',false),
             'fr_date_start'     => array('fr_date_start',false),
             'fr_date_end'     => array('fr_date_end',false),
         );
@@ -83,7 +83,7 @@ class Lending_Table extends WP_List_Table {
     function extra_tablenav($which) {
         if ($which === 'top') {
             echo '<div class="alignleft actions">';
-            scwp_generate_select('user_id', 'users', intval($_REQUEST['user_id']), 'user_nicename', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
+            scwp_generate_select('user_id', 'users', intval($_REQUEST['user_id']), 'CONCAT(user_nicename, " - ", display_name)', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
             submit_button('Filter', 'button', 'filter_action', false);
             echo '</div>';
         }
@@ -134,7 +134,7 @@ class Lending_Table extends WP_List_Table {
         $filter = !empty($_REQUEST['user_id']) ? ' AND user_id = ' . intval($_REQUEST['user_id']) : '';
 
         // comment_date is used as lending date, comment_date_gmt is used as return date.
-        $query = "SELECT comment_ID as ID, user_nicename, post_title AS name, comment_agent AS note, DATE_FORMAT(comment_date, '%d/%m/%Y') AS fr_date_start, DATE_FORMAT(comment_date_gmt, '%d/%m/%Y') AS fr_date_end,
+        $query = "SELECT comment_ID as ID, CONCAT(user_nicename, ' - ', display_name) AS username, post_title AS name, comment_agent AS note, DATE_FORMAT(comment_date, '%d/%m/%Y') AS fr_date_start, DATE_FORMAT(comment_date_gmt, '%d/%m/%Y') AS fr_date_end,
         CASE WHEN comment_date = '0000-00-00' THEN 'requested'
         WHEN comment_date_gmt > CURRENT_TIMESTAMP OR comment_date_gmt = '0000-00-00' THEN 'na'
         ELSE 'available' END availability
