@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-05-29 17:19+0000\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Loco - https://localise.biz/\n"
-"Language: nl-BE\n"
 "Project-Id-Version: Plugins - Sharing Club - Development (trunk)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-29 17:18+0000\n"
+"PO-Revision-Date: 2026-02-17 20:57+0100\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
-"Language-Team: Dutch (Belgium)"
+"Language-Team: Dutch (Belgium)\n"
+"Language: nl_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.8\n"
 
 #. Description of the plugin
 msgid ""
@@ -118,7 +118,7 @@ msgstr "Markeer als teruggebracht"
 
 #: sharing-club.php:15
 msgid "na"
-msgstr "na"
+msgstr "niet beschikbaar"
 
 #: sharing-club.php:16
 msgid "available"
@@ -193,8 +193,8 @@ msgstr "%s heeft een object gevraagd"
 
 #: sharing-club.php:256
 msgid ""
-"There's a new request for lending. You can manage the requests connecting to "
-":"
+"There's a new request for lending. You can manage the requests connecting "
+"to :"
 msgstr ""
 "Er is een nieuwe aanvraag om iets te lenen. Je mag deze aanvragen beheren "
 "als je hier klikt: "
