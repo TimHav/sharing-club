@@ -105,7 +105,7 @@ class Lending_Table extends WP_List_Table {
             }
         }else if ('return' === $this->current_action()) {
             if (!empty($ids)) {
-                $wpdb->query("UPDATE $table_name SET `comment_date_gmt` = '".date('Y-m-d H:i:s')."' WHERE comment_ID IN($ids)");
+                $wpdb->query("UPDATE $table_name SET `comment_date_gmt` = CURRENT_DATE WHERE comment_ID IN($ids)");
             }
         }
         
@@ -133,6 +133,7 @@ class Lending_Table extends WP_List_Table {
 
         $filter = !empty($_REQUEST['user_id']) ? ' AND user_id = ' . intval($_REQUEST['user_id']) : '';
 
+        // comment_date is used as lending date, comment_date_gmt is used as return date.
         $query = "SELECT comment_ID as ID, user_nicename, post_title AS name, comment_agent AS note, DATE_FORMAT(comment_date, '%d/%m/%Y') AS fr_date_start, DATE_FORMAT(comment_date_gmt, '%d/%m/%Y') AS fr_date_end,
         CASE WHEN comment_date = '0000-00-00' THEN 'requested'
         WHEN comment_date_gmt > CURRENT_TIMESTAMP OR comment_date_gmt = '0000-00-00' THEN 'na'
