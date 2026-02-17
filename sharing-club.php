@@ -33,6 +33,7 @@ function scwp_validate_lending($item){
                     $messages[] = __('Please enter a valid date.', 'sharing-club');
             }
         }
+        if($n=='comment_post_ID' && $v==0)$messages[] = __('Please select an object.', 'sharing-club');
     }
     
     if (empty($messages)) return true;

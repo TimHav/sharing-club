@@ -142,7 +142,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <label for="comment_post_ID"><?php _e('Object', 'sharing-club')?></label>
         </th>
         <td>
-            <?php scwp_generate_select('comment_post_ID', 'posts', intval($item['comment_post_ID']), 'post_title', 'post_type = \'shared_item\''); ?>
+            <?php scwp_generate_select('comment_post_ID', 'posts', intval($item['comment_post_ID']), 'post_title', 'post_type = \'shared_item\' AND post_status = \'publish\'', ['label' => '', 'value' => '']); ?>
         </td>
     </tr>
     <tr class="form-field">
