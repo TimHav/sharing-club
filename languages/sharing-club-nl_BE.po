@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plugins - Sharing Club - Development (trunk)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-29 17:18+0000\n"
-"PO-Revision-Date: 2026-02-17 20:57+0100\n"
+"PO-Revision-Date: 2026-04-08 22:18+0200\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
 "Language-Team: Dutch (Belgium)\n"
 "Language: nl_BE\n"
@@ -118,7 +118,7 @@ msgstr "Markeer als teruggebracht"
 
 #: sharing-club.php:15
 msgid "na"
-msgstr "niet beschikbaar"
+msgstr "uitgeleend"
 
 #: sharing-club.php:16
 msgid "available"
@@ -144,7 +144,6 @@ msgstr "Gebruik een geldige datum."
 msgid "Objects"
 msgstr "Objecten"
 
-#. #-#-#-#-#  sharing-club-code.pot (Sharing Club 1.1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: sharing-club.php:67
 msgid "Sharing Club"
@@ -197,7 +196,7 @@ msgid ""
 "to :"
 msgstr ""
 "Er is een nieuwe aanvraag om iets te lenen. Je mag deze aanvragen beheren "
-"als je hier klikt: "
+"als je hier klikt:"
 
 #: templates/single-shared_item.php:32
 msgid "review(s)"
@@ -205,7 +204,7 @@ msgstr "beoordeling(en)"
 
 #: templates/single-shared_item.php:43
 msgid "You have requested this object."
-msgstr "Je hebt dit object reeds aangevraagd"
+msgstr "Je hebt dit object reeds aangevraagd."
 
 #: templates/single-shared_item.php:44
 msgid "You borrowed this object."
@@ -227,7 +226,7 @@ msgid ""
 "item."
 msgstr ""
 "<a href='%s'>Registreer je</a>  of <a href='%s'>log in</a> om dit object te "
-"reserveren"
+"reserveren."
 
 #: templates/single-shared_item.php:64
 msgid "Your review"
@@ -251,4 +250,4 @@ msgstr "Manu Z."
 
 #. Author URI of the plugin/theme
 msgid "http://netdelight.be/"
-msgstr "http://netdelight.be/ "
+msgstr "http://netdelight.be/"
