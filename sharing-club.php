@@ -11,17 +11,6 @@ Domain Path: /languages/
 */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-/* dummy text for translation */
-__('na', 'sharing-club');
-__('available', 'sharing-club');
-__('requested', 'sharing-club');
-
-load_plugin_textdomain(
-    'sharing-club',
-    false,
-    dirname( plugin_basename( __FILE__ ) ) . '/languages'
-);
-
 function scwp_validate_lending($item){
     $messages = array();
     foreach($item as $n=>$v){
@@ -75,6 +64,15 @@ function scwp_plugin_activate() {
     }
 }
 register_activation_hook( __FILE__, 'scwp_plugin_activate' );
+
+function scwp_load_textdomain() {
+    load_plugin_textdomain(
+        'sharing-club',
+        false,
+        dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+    );
+}
+add_action( 'plugins_loaded', 'scwp_load_textdomain' );
 
 function scwp_init() {
     //if ( current_user_can( 'manage_options' ) ) {

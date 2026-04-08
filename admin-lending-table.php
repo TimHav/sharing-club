@@ -26,9 +26,14 @@ class Lending_Table extends WP_List_Table {
         );
     }
     function column_default($item, $column_name){
+        $lent_statuses = [
+           'na' => __('na', 'sharing-club'),
+            'available' => __('available', 'sharing-club'),
+            'requested' => __('requested', 'sharing-club')
+        ];
         switch($column_name){
             case 'availability':
-                return __($item->$column_name, 'sharing-club');
+                return $lent_statuses[$item->availability] ?? $item->availability;
             default:
                 //return print_r($item,true); //Show the whole array for troubleshooting purposes
                 return $item->$column_name;
