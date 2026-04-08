@@ -125,6 +125,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
     
                            
     function scwp_meta_box_handler($item) {
+        global $wpdb;
     ?>
 
 <table cellspacing="2" cellpadding="5" style="width: 100%;" class="form-table">
@@ -134,7 +135,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <label for="user_ID"><?php _e('User', 'sharing-club')?></label>
         </th>
         <td>
-            <?php scwp_generate_select('user_id', 'users', intval($item['user_id']), 'CONCAT(user_nicename, " - ", display_name)'); ?>
+            <?php scwp_generate_select('user_id', $wpdb->users, intval($item['user_id']), 'CONCAT(user_nicename, " - ", display_name)'); ?>
         </td>
     </tr>
     <tr class="form-field">
@@ -142,7 +143,17 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <label for="comment_post_ID"><?php _e('Object', 'sharing-club')?></label>
         </th>
         <td>
-            <?php scwp_generate_select('comment_post_ID', 'posts', intval($item['comment_post_ID']), 'post_title', 'post_type = \'shared_item\' AND post_status = \'publish\'', ['label' => '', 'value' => '']); ?>
+            <?php 
+            scwp_generate_select(
+                'comment_post_ID',
+                $wpdb->posts . ' p LEFT JOIN (SELECT comment_post_ID, MAX(comment_date_gmt) as lent_until FROM ' . $wpdb->comments . ' WHERE comment_date_gmt > CURRENT_DATE GROUP BY comment_post_ID) l ON p.ID = l.comment_post_ID',
+                intval($item['comment_post_ID']),
+                'post_title',
+                'p.post_type = \'shared_item\' AND p.post_status = \'publish\'',
+                ['label' => '', 'value' => ''],
+                '(lent_until IS NOT NULL AND ID != ' . intval($item['comment_post_ID']) . ')'
+            );
+            ?>
         </td>
     </tr>
     <tr class="form-field">

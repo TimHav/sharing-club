@@ -40,19 +40,31 @@ function scwp_validate_lending($item){
     return implode('<br />', $messages);
 }
 
-function scwp_generate_select($selector_id, $table, $selected = 0, $label = NULL, $where = NULL, $default_option = NULL) {
+function scwp_generate_select($selector_id, $table, $selected = 0, $label = NULL, $where = NULL, $default_option = NULL, $disabled = NULL) {
     global $wpdb;
-    if($label==NULL)$label = $selector_id;
-    $query = "SELECT ID, $label AS label FROM ".$wpdb->$table;
-    if($where)$query .= ' WHERE '.$where;
+    if ($label == NULL) {
+        $label = $selector_id;
+    }
+    $query = "SELECT ID, $label AS label";
+    if ($disabled != NULL) {
+        $query .= ", $disabled AS disabled";
+    }
+    $query .= " FROM " . $table;
+    if ($where) {
+        $query .= ' WHERE ' . $where;
+    }
     $query .= " ORDER BY " . ($label ? $label : $selector_id);
+
     $data = $wpdb->get_results($query);
     echo '<select name="'. $selector_id .'">';
     if (isset($default_option)) {
         echo '<option value="' . $default_option['value'] . '">' . esc_html($default_option['label']) . '</option>';
     }
     foreach ($data as $r) {
-        echo '<option value="', $r->ID, '"', $selected == $r->ID ? ' selected="selected"' : '', '>', $r->label, '</option>';
+        echo '<option value="', $r->ID, '"',
+            $selected == $r->ID ? ' selected="selected"' : '',
+            $disabled != NULL && $r->disabled ? ' disabled' : '',
+            '>', $r->label, '</option>';
     }
     echo '</select>';
 }

@@ -81,9 +81,11 @@ class Lending_Table extends WP_List_Table {
     }
 
     function extra_tablenav($which) {
+        global $wpdb;
+
         if ($which === 'top') {
             echo '<div class="alignleft actions">';
-            scwp_generate_select('user_id', 'users', intval($_REQUEST['user_id']), 'CONCAT(user_nicename, " - ", display_name)', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
+            scwp_generate_select('user_id', $wpdb->users, intval($_REQUEST['user_id'] ?? 0), 'CONCAT(user_nicename, " - ", display_name)', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
             submit_button('Filter', 'button', 'filter_action', false);
             echo '</div>';
         }
