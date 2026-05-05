@@ -89,8 +89,17 @@ class Lending_Table extends WP_List_Table {
         global $wpdb;
 
         if ($which === 'top') {
+            $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'na';
+
             echo '<div class="alignleft actions">';
             scwp_generate_select('user_id', $wpdb->users, intval($_REQUEST['user_id'] ?? 0), 'CONCAT(user_nicename, " - ", display_name)', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
+            echo '<label for="availability">' . __('Availability', 'sharing-club') . '</label> ';
+            echo '<select name="availability" id="availability">';
+            echo '<option value="all"' . selected($availability, 'all', false) . '>' . __('Status', 'sharing-club') . '</option>';
+            echo '<option value="na"' . selected($availability, 'na', false) . '>' . __('na', 'sharing-club') . '</option>';
+            echo '<option value="available"' . selected($availability, 'available', false) . '>' . __('available', 'sharing-club') . '</option>';
+            // echo '<option value="requested"' . selected($availability, 'requested', false) . '>' . __('requested', 'sharing-club') . '</option>';
+            echo '</select> ';
             submit_button('Filter', 'button', 'filter_action', false);
             echo '</div>';
         }
@@ -139,6 +148,8 @@ class Lending_Table extends WP_List_Table {
         $order = (!empty($_REQUEST['order'])) ? sanitize_key($_REQUEST['order']) : 'desc'; //If no order, default to asc
 
         $filter = !empty($_REQUEST['user_id']) ? ' AND user_id = ' . intval($_REQUEST['user_id']) : '';
+        $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'na';
+        $availability_having = ($availability !== 'all') ? "HAVING availability = '" . esc_sql($availability) . "'" : '';
 
         // comment_date is used as lending date, comment_date_gmt is used as return date.
         $query = "SELECT comment_ID as ID, CONCAT(user_nicename, ' - ', display_name) AS username, post_title AS name, comment_agent AS note, DATE_FORMAT(comment_date, '%d/%m/%Y') AS fr_date_start, DATE_FORMAT(comment_date_gmt, '%d/%m/%Y') AS fr_date_end,
@@ -150,6 +161,7 @@ class Lending_Table extends WP_List_Table {
         LEFT JOIN ".$wpdb->users." AS users ON (users.ID = user_id) 
         WHERE post_type = 'shared_item'
         $filter
+        $availability_having
         ORDER BY FIELD(availability, 'requested', 'na', 'available'), $orderby $order";
         $data = $wpdb->get_results($query);
 
