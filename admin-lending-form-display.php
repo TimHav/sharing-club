@@ -92,8 +92,8 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
 
 ?>
 <div class="wrap">
-    <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Lendings', 'sharing-club')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'edit.php?post_type=shared_item&page=display_lending_table');?>"><?php _e('Back to list', 'sharing-club')?></a>
+    <div id="icon-users" class="icon32"><br/></div>
+    <h2><?php _e('Lending form', 'sharing-club')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'edit.php?post_type=shared_item&page=display_lending_table');?>"><?php _e('Back to list', 'sharing-club')?></a>
     </h2>
 
     <?php if (!empty($notice)): ?>
