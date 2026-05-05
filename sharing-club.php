@@ -221,6 +221,10 @@ function scwp_add_menu_item(){
             'scwp_display_lending_form' // callback function
         );
     }
+    // Hide "Add New" for users without edit_shared_item capability
+    if ( ! current_user_can( 'edit_shared_item' ) ) {
+        remove_submenu_page( 'edit.php?post_type=shared_item', 'post-new.php?post_type=shared_item' );
+    }
 }
 add_action('admin_menu', 'scwp_add_menu_item');
 
