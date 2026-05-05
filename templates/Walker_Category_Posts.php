@@ -29,7 +29,8 @@ class Walker_Category_Posts extends Walker_Category{
             'taxonomy' => 'shared_item_category',
             'field' => 'term_id',
             'operator' => 'NOT IN',
-            'terms' => get_terms('shared_item_category', array(
+            'terms' => get_terms(array(
+                    'taxonomy' => 'shared_item_category',
                     'fields' => 'ids'
                 ))
             ));
