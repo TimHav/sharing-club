@@ -93,7 +93,6 @@ class Lending_Table extends WP_List_Table {
 
             echo '<div class="alignleft actions">';
             scwp_generate_select('user_id', $wpdb->users, intval($_REQUEST['user_id'] ?? 0), 'CONCAT(user_nicename, " - ", display_name)', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
-            echo '<label for="availability">' . __('Availability', 'sharing-club') . '</label> ';
             echo '<select name="availability" id="availability">';
             echo '<option value="all"' . selected($availability, 'all', false) . '>' . __('Status', 'sharing-club') . '</option>';
             echo '<option value="na"' . selected($availability, 'na', false) . '>' . __('na', 'sharing-club') . '</option>';
