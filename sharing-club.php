@@ -201,14 +201,6 @@ function scwp_add_menu_item(){
             'display_lending_table', 
             'scwp_display_lending_table'
         );
-        add_submenu_page(
-            null, // parent slug
-            __('Lending form', 'sharing-club'),     // page title
-            __('Lending form', 'sharing-club'),     // menu title
-            'activate_plugins',   // capability
-            'display_lending_form',     // menu slug
-            'scwp_display_lending_form' // callback function
-        );
     }
 }
 add_action('admin_menu', 'scwp_add_menu_item');
