@@ -66,8 +66,10 @@ class Lending_Table extends WP_List_Table {
         //Build row actions
         $actions = array(
             'edit'      => sprintf('<a href="?page=%s&action=%s&ID=%d&post_type=shared_item">%s</a>','display_lending_form','edit',$item->ID, __('Edit', 'sharing-club')),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&lending[0]=%d&post_type=shared_item">%s</a>','display_lending_table','delete',$item->ID, __('Delete', 'sharing-club')),
         );
+        if ( current_user_can( 'delete_shared_item' ) ) {
+            $actions['delete'] = sprintf('<a href="?page=%s&action=%s&lending[0]=%d&post_type=shared_item">%s</a>','display_lending_table','delete',$item->ID, __('Delete', 'sharing-club'));
+        }
         
         //Return the title contents
         return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
@@ -80,8 +82,10 @@ class Lending_Table extends WP_List_Table {
     function get_bulk_actions() {
         $actions = array(
             'return' => __('Mark as returned', 'sharing-club'),
-            'delete' => __('Delete', 'sharing-club'),
         );
+        if ( current_user_can( 'delete_shared_item' ) ) {
+            $actions['delete'] = __('Delete', 'sharing-club');
+        }
         return $actions;
     }
 

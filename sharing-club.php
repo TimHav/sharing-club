@@ -120,13 +120,24 @@ function scwp_init() {
         );
     
         function scwp_admin_init(){
-            $role = get_role( 'administrator' );
-            $role->add_cap( 'publish_shared_item' );
-            $role->add_cap( 'edit_shared_item' );
-            $role->add_cap( 'edit_others_shared_item' );
-            $role->add_cap( 'delete_shared_item' );
-            $role->add_cap( 'delete_others_shared_item' );
-            $role->add_cap( 'read_private_shared_item' );
+            $administrator = get_role( 'administrator' );
+            if ( $administrator ) {
+                $administrator->add_cap( 'read_shared_item' );
+                $administrator->add_cap( 'publish_shared_item' );
+                $administrator->add_cap( 'edit_shared_item' );
+                $administrator->add_cap( 'edit_others_shared_item' );
+                $administrator->add_cap( 'delete_shared_item' );
+                $administrator->add_cap( 'delete_others_shared_item' );
+                $administrator->add_cap( 'read_private_shared_item' );
+                $administrator->add_cap( 'lend_shared_item' );
+            }
+
+            $contributor = get_role( 'contributor' );
+            if ( $contributor ) {
+                $contributor->add_cap( 'read_shared_item' );
+                $contributor->add_cap( 'read_private_shared_item' );
+                $contributor->add_cap( 'lend_shared_item' );
+            }
         }
 
         add_action('admin_init', 'scwp_admin_init');
@@ -185,19 +196,19 @@ function scwp_display_lending_table(){
     require_once plugin_dir_path( __FILE__ ) . 'admin-lending-table-display.php';
 }
 function scwp_display_lending_form(){
-    if ( current_user_can( 'manage_options' ) ) {
+    if ( current_user_can( 'lend_shared_item' ) ) {
         wp_enqueue_style('jquery-ui-css', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.css');
         wp_enqueue_script( 'scwp-admin', plugin_dir_url( __FILE__ ) . 'js/lending-library-admin.js', array( 'jquery', 'jquery-ui-datepicker' ) );
         require_once plugin_dir_path( __FILE__ ) . 'admin-lending-form-display.php';
     }
 }
 function scwp_add_menu_item(){
-    if ( current_user_can( 'manage_options' ) ) {
+    if ( current_user_can( 'lend_shared_item' ) ) {
         add_submenu_page(
             'edit.php?post_type=shared_item', 
             __('Lendings', 'sharing-club'), 
             __('Lendings', 'sharing-club'), 
-            'activate_plugins', 
+            'lend_shared_item', 
             'display_lending_table', 
             'scwp_display_lending_table'
         );
@@ -205,7 +216,7 @@ function scwp_add_menu_item(){
             'edit.php?post_type=shared_item&page=display_lending_table', // parent slug
             __('Lending form', 'sharing-club'),     // page title
             __('Lending form', 'sharing-club'),     // menu title
-            'activate_plugins',   // capability
+            'lend_shared_item',   // capability
             'display_lending_form',     // menu slug
             'scwp_display_lending_form' // callback function
         );
