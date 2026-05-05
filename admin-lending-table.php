@@ -90,9 +90,11 @@ class Lending_Table extends WP_List_Table {
 
         if ($which === 'top') {
             $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'na';
+            $object_id = intval($_REQUEST['object_id'] ?? 0);
 
             echo '<div class="alignleft actions">';
             scwp_generate_select('user_id', $wpdb->users, intval($_REQUEST['user_id'] ?? 0), 'CONCAT(user_nicename, " - ", display_name)', NULL, ['label' => __('User', 'sharing-club'), 'value' => '']);
+            scwp_generate_select('object_id', $wpdb->posts, $object_id, 'post_title', "post_type = 'shared_item' AND post_status = 'publish'", ['label' => __('Object', 'sharing-club'), 'value' => '']);
             echo '<select name="availability" id="availability">';
             echo '<option value="all"' . selected($availability, 'all', false) . '>' . __('Status', 'sharing-club') . '</option>';
             echo '<option value="na"' . selected($availability, 'na', false) . '>' . __('na', 'sharing-club') . '</option>';
@@ -147,6 +149,10 @@ class Lending_Table extends WP_List_Table {
         $order = (!empty($_REQUEST['order'])) ? sanitize_key($_REQUEST['order']) : 'desc'; //If no order, default to asc
 
         $filter = !empty($_REQUEST['user_id']) ? ' AND user_id = ' . intval($_REQUEST['user_id']) : '';
+        $object_id = !empty($_REQUEST['object_id']) ? intval($_REQUEST['object_id']) : 0;
+        if ($object_id) {
+            $filter .= ' AND comment_post_ID = ' . $object_id;
+        }
         $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'na';
         $availability_having = ($availability !== 'all') ? "HAVING availability = '" . esc_sql($availability) . "'" : '';
 
