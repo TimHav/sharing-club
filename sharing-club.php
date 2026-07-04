@@ -213,7 +213,7 @@ function scwp_add_menu_item(){
             'scwp_display_lending_table'
         );
         add_submenu_page(
-            'edit.php?post_type=shared_item&page=display_lending_table', // parent slug
+            'edit.php?post_type=shared_item', // parent slug
             __('Lending form', 'sharing-club'),     // page title
             __('Lending form', 'sharing-club'),     // menu title
             'lend_shared_item',   // capability
