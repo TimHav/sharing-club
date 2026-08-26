@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-13 16:08+0000\n"
-"PO-Revision-Date: 2019-03-13 16:12+0000\n"
+"PO-Revision-Date: 2026-08-06 21:53+0200\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
 "Language-Team: Français\n"
-"Language: fr-FR\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.2.1; wp-5.1.1"
+"X-Generator: Poedit 3.9\n"
+"X-Loco-Version: 2.2.1; wp-5.1.1\n"
 
 #: admin-lending-form-display.php:56
 msgid "Item was successfully saved"
@@ -76,7 +76,7 @@ msgstr "Avis"
 
 #: admin-lending-form-display.php:174 admin-lending-table.php:46
 msgid "Admin notes"
-msgstr "Notes de l'admin."
+msgstr "Notes de l'admin"
 
 #: admin-lending-form-display.php:182
 msgid "Rating"
@@ -108,7 +108,7 @@ msgid "Mark as returned"
 msgstr "Marquer comme rendu"
 
 #. Name of the plugin
-#: admin-options.php:60 admin-options.php:61 admin-options.php:133 
+#: admin-options.php:60 admin-options.php:61 admin-options.php:133
 #: sharing-club.php:67
 msgid "Sharing Club"
 msgstr "Sharing Club"
@@ -122,11 +122,11 @@ msgid "Hide the comment form"
 msgstr "Masquer le formulaire de commentaire"
 
 #: sharing-club.php:15
-msgid "na"
+msgid "lent"
 msgstr "en prêt"
 
 #: sharing-club.php:16 templates/Walker_Category_Posts.php:56
-msgid "available"
+msgid "returned"
 msgstr "disponible"
 
 #: sharing-club.php:17
@@ -143,7 +143,7 @@ msgstr "Veuillez entrer un avis valide."
 
 #: sharing-club.php:33
 msgid "Please enter a valid date."
-msgstr "Veuillez entrer une date valide"
+msgstr "Veuillez entrer une date valide."
 
 #: sharing-club.php:65 sharing-club.php:68
 msgid "Objects"
@@ -192,8 +192,8 @@ msgstr "%s a demandé un prêt"
 
 #: sharing-club.php:254
 msgid ""
-"There's a new request for lending. You can manage the requests connecting to "
-":"
+"There's a new request for lending. You can manage the requests connecting "
+"to :"
 msgstr ""
 "Il y a une nouvelle demande de prêt. Vous pouvez gérer cette demande en vous "
 "connectant sur :"
@@ -225,8 +225,8 @@ msgid ""
 "Please <a href='%s'>register</a> or <a href='%s'>log in</a> to book this "
 "item."
 msgstr ""
-"Veuillez <a href='%s'>vous enregistrer</a> ou <a href='%s'>vous connecter</a>"
-" pour réserver cet objet."
+"Veuillez <a href='%s'>vous enregistrer</a> ou <a href='%s'>vous connecter</"
+"a> pour réserver cet objet."
 
 #: templates/single-shared_item.php:73
 msgid "Your review"

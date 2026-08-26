@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plugins - Sharing Club - Development (trunk)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-29 17:18+0000\n"
-"PO-Revision-Date: 2026-04-08 22:18+0200\n"
+"PO-Revision-Date: 2026-08-06 21:53+0200\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
 "Language-Team: Dutch (Belgium)\n"
 "Language: nl_BE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #. Description of the plugin
 msgid ""
@@ -117,11 +117,11 @@ msgid "Mark as returned"
 msgstr "Markeer als teruggebracht"
 
 #: sharing-club.php:15
-msgid "na"
+msgid "lent"
 msgstr "uitgeleend"
 
 #: sharing-club.php:16
-msgid "available"
+msgid "returned"
 msgstr "beschikbaar"
 
 #: sharing-club.php:17
