@@ -135,6 +135,7 @@ function scwp_init() {
             $contributor = get_role( 'contributor' );
             if ( $contributor ) {
                 $contributor->add_cap( 'read_shared_item' );
+                $contributor->add_cap( 'edit_shared_item' );
                 $contributor->add_cap( 'read_private_shared_item' );
                 $contributor->add_cap( 'lend_shared_item' );
             }
