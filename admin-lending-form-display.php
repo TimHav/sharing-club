@@ -49,6 +49,7 @@ if (wp_verify_nonce(@$_REQUEST['nonce'], basename(__FILE__))) {
         $item['comment_date']       = scwp_prepare_date(scwp_sanitize_date($item['comment_date']));
         $item['comment_date_gmt']   = scwp_prepare_date(scwp_sanitize_date($item['comment_date_gmt']));
         if ($item['comment_ID'] == 0) {
+            $item['comment_approved'] = 'lent';
             $result = $wpdb->insert($table_name, $item);
             if ($result!==false) {
                 $message = __('Item was successfully saved', 'sharing-club');

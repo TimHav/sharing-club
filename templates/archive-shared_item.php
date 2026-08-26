@@ -51,9 +51,7 @@ get_header();
             $myposts = get_posts( $args );
             foreach ( $myposts as $post ) : setup_postdata( $post );
                 $query = "SELECT 
-                CASE WHEN comment_date = 0 THEN 'requested'
-                WHEN comment_date_gmt > CURRENT_TIMESTAMP OR comment_date_gmt = 0 THEN 'na'
-                ELSE 'available' END availability 
+                comment_approved AS availability 
                 FROM $wpdb->comments WHERE comment_post_ID = $post->ID AND comment_type = 'lending' LIMIT 1";
                 $lending = $wpdb->get_row($query);
         ?>

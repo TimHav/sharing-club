@@ -27,9 +27,9 @@ class Lending_Table extends WP_List_Table {
     }
     function column_default($item, $column_name){
         $lent_statuses = [
-           'na' => __('na', 'sharing-club'),
-            'available' => __('available', 'sharing-club'),
-            'requested' => __('requested', 'sharing-club')
+            'lent' => __('lent', 'sharing-club'),
+            'requested' => __('requested', 'sharing-club'),
+            'returned' => __('returned', 'sharing-club')
         ];
         switch($column_name){
             case 'availability':
@@ -93,7 +93,7 @@ class Lending_Table extends WP_List_Table {
         global $wpdb;
 
         if ($which === 'top') {
-            $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'na';
+            $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'lent';
             $object_id = intval($_REQUEST['object_id'] ?? 0);
 
             echo '<div class="alignleft actions">';
@@ -101,8 +101,8 @@ class Lending_Table extends WP_List_Table {
             scwp_generate_select('object_id', $wpdb->posts, $object_id, 'post_title', "post_type = 'shared_item' AND post_status = 'publish'", ['label' => __('Object', 'sharing-club'), 'value' => '']);
             echo '<select name="availability" id="availability">';
             echo '<option value="all"' . selected($availability, 'all', false) . '>' . __('Status', 'sharing-club') . '</option>';
-            echo '<option value="na"' . selected($availability, 'na', false) . '>' . __('na', 'sharing-club') . '</option>';
-            echo '<option value="available"' . selected($availability, 'available', false) . '>' . __('available', 'sharing-club') . '</option>';
+            echo '<option value="lent"' . selected($availability, 'lent', false) . '>' . __('lent', 'sharing-club') . '</option>';
+            echo '<option value="returned"' . selected($availability, 'returned', false) . '>' . __('returned', 'sharing-club') . '</option>';
             // echo '<option value="requested"' . selected($availability, 'requested', false) . '>' . __('requested', 'sharing-club') . '</option>';
             echo '</select> ';
             submit_button('Filter', 'button', 'filter_action', false);
@@ -126,7 +126,7 @@ class Lending_Table extends WP_List_Table {
             }
         }else if ('return' === $this->current_action()) {
             if (!empty($ids)) {
-                $wpdb->query("UPDATE $table_name SET `comment_date_gmt` = CURRENT_DATE WHERE comment_ID IN($ids)");
+                $wpdb->query("UPDATE $table_name SET `comment_date_gmt` = CURRENT_DATE, `comment_approved` = 'returned' WHERE comment_ID IN($ids)");
             }
         }
         
@@ -157,21 +157,24 @@ class Lending_Table extends WP_List_Table {
         if ($object_id) {
             $filter .= ' AND comment_post_ID = ' . $object_id;
         }
-        $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'na';
+        $availability = isset($_REQUEST['availability']) ? sanitize_key($_REQUEST['availability']) : 'lent';
         $availability_having = ($availability !== 'all') ? "HAVING availability = '" . esc_sql($availability) . "'" : '';
 
         // comment_date is used as lending date, comment_date_gmt is used as return date.
-        $query = "SELECT comment_ID as ID, CONCAT(user_nicename, ' - ', display_name) AS username, post_title AS name, comment_agent AS note, DATE_FORMAT(comment_date, '%d/%m/%Y') AS fr_date_start, DATE_FORMAT(comment_date_gmt, '%d/%m/%Y') AS fr_date_end,
-        CASE WHEN comment_date = '0000-00-00' THEN 'requested'
-        WHEN comment_date_gmt > CURRENT_TIMESTAMP OR comment_date_gmt = '0000-00-00' THEN 'na'
-        ELSE 'available' END availability
+        $query = "SELECT comment_ID as ID,
+            CONCAT(user_nicename, ' - ', display_name) AS username,
+            post_title AS name,
+            comment_agent AS note,
+            DATE_FORMAT(comment_date, '%d/%m/%Y') AS fr_date_start,
+            DATE_FORMAT(comment_date_gmt, '%d/%m/%Y') AS fr_date_end,
+            comment_approved AS availability
         FROM ".$wpdb->comments." AS lending
         LEFT JOIN ".$wpdb->posts." AS objects ON (objects.ID = comment_post_ID)
         LEFT JOIN ".$wpdb->users." AS users ON (users.ID = user_id) 
         WHERE post_type = 'shared_item'
         $filter
         $availability_having
-        ORDER BY FIELD(availability, 'requested', 'na', 'available'), $orderby $order";
+        ORDER BY FIELD(availability, 'requested', 'lent', 'available'), $orderby $order";
         $data = $wpdb->get_results($query);
 
         $current_page = $this->get_pagenum();

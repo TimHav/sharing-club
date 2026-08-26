@@ -20,9 +20,7 @@ $comm = $wpdb->get_row("SELECT GROUP_CONCAT(NULLIF(comment_content,'') SEPARATOR
 $past = $wpdb->get_row("SELECT comment_ID, comment_karma AS rating, comment_content, comment_date FROM ".$wpdb->comments." lending
 WHERE user_id = ".get_current_user_id()." AND comment_post_ID = ".get_the_ID()." AND comment_date != 0 ORDER BY comment_content DESC, comment_karma DESC LIMIT 1");
 $status = $wpdb->get_row("SELECT 
-CASE WHEN comment_date = '0000-00-00' THEN 'requested'
-    WHEN comment_date_gmt > CURRENT_TIMESTAMP OR comment_date_gmt = '0000-00-00' THEN 'na'
-    ELSE 'available' END availability,
+comment_approved AS availability,
 IF(user_id=".get_current_user_id().", 'you', 'other') who,
 $wpdb->comments.*, user_nicename FROM ".$wpdb->comments." LEFT JOIN ".$wpdb->users." ON ".$wpdb->comments.".user_id = ".$wpdb->users.".ID WHERE comment_post_ID = ".get_the_ID()." ORDER BY comment_ID DESC LIMIT 1");
 // to you / other
@@ -44,7 +42,7 @@ $wpdb->comments.*, user_nicename FROM ".$wpdb->comments." LEFT JOIN ".$wpdb->use
             <?php the_post_thumbnail('medium', array('class'=>'details-picture')) ?>
             <p><?php the_content(); ?></p>
             <!--BOOKING-->
-            <?php if(@$status->availability!='available'&&$status){
+            <!-- < ?php if(@$status->availability!='available'&&$status){
                 // not available
                 echo '<em>';
                 if($status->who=='you'){
@@ -54,17 +52,18 @@ $wpdb->comments.*, user_nicename FROM ".$wpdb->comments." LEFT JOIN ".$wpdb->use
                 echo '</em>';
             }else if(is_user_logged_in()){ 
             // available ?>
-            <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
-                <?php wp_nonce_field( 'booking', 'booking_nonce' ); ?>
+            <form method="post" action="< ?php echo $_SERVER['REQUEST_URI']; ?>">
+                < ?php wp_nonce_field( 'booking', 'booking_nonce' ); ?>
                 <input type="hidden" name="iwantit" value="1" />
-                <input type="submit" value="<?php _e('Book', 'sharing-club') ?>" />
+                <input type="submit" value="< ?php _e('Book', 'sharing-club') ?>" />
             </form>
-            <?php }else{
+            < ?php }else{
             // suggest to register
             printf(__("Please <a href='%s'>register</a> or <a href='%s'>log in</a> to book this item.", 'sharing-club'), wp_registration_url(), wp_login_url());
             ?>
                 
-            <?php } ?>
+            < ?php } ?>
+            -->
             <!--COMMENTS-->
             <?php if(!scwp_get_option('hide_comments')){ ?>
                 <?php if(isset($comm))if($comm->comments!=''){ ?><h3><?php _e('Reviews', 'sharing-club') ?></h3><div id="reviews"><?php echo stripslashes($comm->comments) ?></div><?php } ?>
