@@ -173,6 +173,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <input id="comment_date_gmt" name="comment_date_gmt" type="date" value="<?php echo esc_attr($item['comment_date_gmt'])?>" size="20" required />
         </td>
     </tr>
+    <?php if (!empty($item['comment_ID'])): ?>
     <tr class="form-field">
         <th valign="top" scope="row">
             <label for="comment_content"><?php _e('Reviews', 'sharing-club')?></label>
@@ -197,6 +198,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <input id="comment_karma" name="comment_karma" type="text" style="width: 10%" value="<?php echo esc_attr($item['comment_karma'])?>" size="50" />
         </td>
     </tr>
+    <?php endif; ?>
         
     </tbody>
 </table>
