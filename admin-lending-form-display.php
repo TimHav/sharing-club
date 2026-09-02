@@ -136,7 +136,7 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <label for="user_ID"><?php _e('User', 'sharing-club')?></label>
         </th>
         <td>
-            <?php scwp_generate_select('user_id', $wpdb->users, intval($item['user_id']), 'CONCAT(user_nicename, " - ", display_name)'); ?>
+            <?php scwp_generate_select('user_id', $wpdb->users, intval($item['user_id']), 'CONCAT(user_nicename, " - ", display_name)', NULL, ['label' => '', 'value' => '']); ?>
         </td>
     </tr>
     <tr class="form-field">
