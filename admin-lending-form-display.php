@@ -147,12 +147,12 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
             <?php 
             scwp_generate_select(
                 'comment_post_ID',
-                $wpdb->posts . ' p LEFT JOIN (SELECT comment_post_ID, MAX(comment_date_gmt) as lent_until FROM ' . $wpdb->comments . ' WHERE comment_date_gmt > CURRENT_DATE GROUP BY comment_post_ID) l ON p.ID = l.comment_post_ID',
+                $wpdb->posts . ' p LEFT JOIN ' . $wpdb->comments . ' l ON p.ID = l.comment_post_ID AND l.comment_approved = \'lent\'',
                 intval($item['comment_post_ID']),
                 'post_title',
                 'p.post_type = \'shared_item\' AND p.post_status = \'publish\'',
                 ['label' => '', 'value' => ''],
-                '(lent_until IS NOT NULL AND ID != ' . intval($item['comment_post_ID']) . ')'
+                '(comment_approved IS NOT NULL AND ID != ' . intval($item['comment_post_ID']) . ')'
             );
             ?>
         </td>

@@ -93,6 +93,7 @@ If you're tech savvy and want to add extra functionalities to the lendings, you 
 	
 	User			user_id
 	Object			comment_post_ID
+	Status			comment_approved
 	Lending date	comment_date
 	Return date		comment_date_gmt
 	Reviews			comment_content
