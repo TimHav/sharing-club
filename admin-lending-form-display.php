@@ -141,20 +141,53 @@ add_meta_box('form_meta_box',  __('Lending data', 'sharing-club'), 'scwp_meta_bo
     </tr>
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="comment_post_ID"><?php _e('Object', 'sharing-club')?></label>
+            <label for="object_autocomplete"><?php _e('Object', 'sharing-club')?></label>
         </th>
         <td>
-            <?php 
-            scwp_generate_select(
-                'comment_post_ID',
-                $wpdb->posts . ' p LEFT JOIN ' . $wpdb->comments . ' l ON p.ID = l.comment_post_ID AND l.comment_approved = \'lent\'',
-                intval($item['comment_post_ID']),
-                'post_title',
-                'p.post_type = \'shared_item\' AND p.post_status = \'publish\'',
-                ['label' => '', 'value' => ''],
-                '(comment_approved IS NOT NULL AND ID != ' . intval($item['comment_post_ID']) . ')'
-            );
+            <?php
+            $object_options = array();
+            $object_titles_query = "
+                SELECT p.ID, p.post_title,
+                       CASE WHEN l.comment_approved = 'lent' THEN 1 ELSE 0 END AS is_lent
+                FROM {$wpdb->posts} p
+                LEFT JOIN {$wpdb->comments} l
+                    ON p.ID = l.comment_post_ID
+                   AND l.comment_approved = 'lent'
+                WHERE p.post_type = 'shared_item'
+                  AND p.post_status = 'publish'
+                ORDER BY p.post_title ASC
+            ";
+
+            $object_id = intval($item['comment_post_ID']);
+            $object_title = '';
+
+            $objects = $wpdb->get_results($object_titles_query);
+            foreach ($objects as $object) {
+                $object_options[] = array(
+                    'id' => intval($object->ID),
+                    'title' => $object->post_title,
+                    // Mark as lent if it's not the current object being edited
+                    'lent' => !empty($object->is_lent) && intval($object->ID) !== $object_id,
+                );
+                if (intval($object->ID) === $object_id) {
+                    $object_title = $object->post_title;
+                }
+            }
             ?>
+            <input type="hidden" name="comment_post_ID" id="comment_post_ID" value="<?php echo esc_attr($object_id) ?>" />
+            <style>
+                .scwp-object-autocomplete { position: relative; }
+                .scwp-object-autocomplete input[type="text"] { box-sizing: border-box; width: 100%; }
+                .scwp-object-results { box-sizing: border-box; display: none; position: absolute; top: 100%; left: 0; z-index: 1000; width: 100%; max-height: 220px; overflow: auto; border: 1px solid #ccd0d4; background: #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, .15); }
+                .scwp-object-result { box-sizing: border-box; min-height: 44px; padding: 12px 10px; border-bottom: 1px solid #eee; cursor: pointer; }
+                .scwp-object-result:not(.is-disabled):hover { background: #f0f6fc; }
+                .scwp-object-result.is-disabled { color: #777; background: #f3f3f3; cursor: not-allowed; }
+            </style>
+            <div class="scwp-object-autocomplete">
+                <input type="text" id="object_autocomplete" name="object_autocomplete" value="<?php echo esc_attr($object_title) ?>" autocomplete="off" />
+                <div id="object_autocomplete_results" class="scwp-object-results"></div>
+            </div>
+            <script type="application/json" id="scwp-object-options"><?php echo wp_json_encode($object_options); ?></script>
         </td>
     </tr>
     <tr class="form-field">
