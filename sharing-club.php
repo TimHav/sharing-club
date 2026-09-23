@@ -200,7 +200,7 @@ function scwp_display_lending_table(){
 function scwp_display_lending_form(){
     if ( current_user_can( 'lend_shared_item' ) ) {
         wp_enqueue_style('jquery-ui-css', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.css');
-        wp_enqueue_script( 'scwp-admin', plugin_dir_url( __FILE__ ) . 'js/lending-library-admin.js', array( 'jquery', 'jquery-ui-datepicker' ) );
+        wp_enqueue_script( 'scwp-admin', plugin_dir_url( __FILE__ ) . 'js/lending-library-admin.js', array( 'jquery', 'jquery-ui-datepicker' ), filemtime( plugin_dir_path( __FILE__ ) . 'js/lending-library-admin.js' ) );
         require_once plugin_dir_path( __FILE__ ) . 'admin-lending-form-display.php';
     }
 }
@@ -270,7 +270,7 @@ function scwp_custom_post_templates($template) {
         $template = $exists_in_theme;
     }else{
         wp_enqueue_style( 'scwp-public', plugin_dir_url( __FILE__ ) . 'css/lending-library-public.css');
-        wp_enqueue_script( 'scwp-public', plugin_dir_url( __FILE__ ) . 'js/lending-library-public.js', array( 'jquery', 'jquery-ui-datepicker' ) );
+        wp_enqueue_script( 'scwp-public', plugin_dir_url( __FILE__ ) . 'js/lending-library-public.js', array( 'jquery', 'jquery-ui-datepicker' ), filemtime( plugin_dir_path( __FILE__ ) . 'js/lending-library-public.js' ) );
         if ( is_post_type_archive ( 'shared_item' ) ) {
             /* Checks for archive template */
             if(file_exists(plugin_dir_path( __FILE__ ).'/templates/'.$archive_page ))
