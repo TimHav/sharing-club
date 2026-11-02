@@ -1,0 +1,282 @@
+# Copyright (C) 2026 Manu Z.
+# This file is distributed under the same license as the Sharing Club plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Sharing Club 1.3.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sharing-club\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-02T20:27:10+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: sharing-club\n"
+
+#. Plugin Name of the plugin
+#: sharing-club.php
+#: admin-options.php:60
+#: admin-options.php:61
+#: admin-options.php:133
+#: sharing-club.php:146
+msgid "Sharing Club"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: sharing-club.php
+msgid "https://wordpress.org/plugins/sharing-club/"
+msgstr ""
+
+#. Description of the plugin
+#: sharing-club.php
+msgid "Share books, dvd, tools, toys or any object with your community. Your users can easily lend, borrow and rate items and you know who borrowed what."
+msgstr ""
+
+#. Author of the plugin
+#: sharing-club.php
+msgid "Manu Z."
+msgstr ""
+
+#. Author URI of the plugin
+#: sharing-club.php
+msgid "http://netdelight.be/"
+msgstr ""
+
+#: admin-lending-form-display.php:66
+msgid "Item was successfully saved"
+msgstr ""
+
+#: admin-lending-form-display.php:68
+msgid "There was an error while saving item"
+msgstr ""
+
+#: admin-lending-form-display.php:75
+msgid "Item was successfully updated"
+msgstr ""
+
+#: admin-lending-form-display.php:77
+msgid "There was an error while updating item"
+msgstr ""
+
+#: admin-lending-form-display.php:97
+msgid "Item not found"
+msgstr ""
+
+#: admin-lending-form-display.php:106
+msgid "Lending data"
+msgstr ""
+
+#: admin-lending-form-display.php:111
+#: sharing-club.php:284
+#: sharing-club.php:285
+msgid "Lending form"
+msgstr ""
+
+#: admin-lending-form-display.php:111
+#: templates/single-shared_item.php:90
+msgid "Back to list"
+msgstr ""
+
+#: admin-lending-form-display.php:131
+msgid "Save"
+msgstr ""
+
+#: admin-lending-form-display.php:150
+#: admin-lending-table.php:47
+#: admin-lending-table.php:100
+msgid "User"
+msgstr ""
+
+#: admin-lending-form-display.php:158
+#: admin-lending-table.php:46
+#: admin-lending-table.php:101
+msgid "Object"
+msgstr ""
+
+#: admin-lending-form-display.php:209
+#: admin-lending-table.php:48
+msgid "Lending date"
+msgstr ""
+
+#: admin-lending-form-display.php:217
+#: admin-lending-table.php:49
+#: sharing-club.php:124
+msgid "Return date"
+msgstr ""
+
+#: admin-lending-form-display.php:226
+#: templates/single-shared_item.php:69
+msgid "Reviews"
+msgstr ""
+
+#: admin-lending-form-display.php:234
+#: admin-lending-table.php:51
+msgid "Admin notes"
+msgstr ""
+
+#: admin-lending-form-display.php:242
+msgid "Rating"
+msgstr ""
+
+#: admin-lending-table-display.php:32
+#: sharing-club.php:276
+#: sharing-club.php:277
+msgid "Lendings"
+msgstr ""
+
+#: admin-lending-table-display.php:32
+msgid "Add new lending"
+msgstr ""
+
+#: admin-lending-table-display.php:36
+#, php-format
+msgid "Items deleted: %d"
+msgstr ""
+
+#: admin-lending-table.php:30
+#: admin-lending-table.php:104
+msgid "lent"
+msgstr ""
+
+#: admin-lending-table.php:31
+msgid "requested"
+msgstr ""
+
+#: admin-lending-table.php:32
+#: admin-lending-table.php:105
+msgid "returned"
+msgstr ""
+
+#: admin-lending-table.php:50
+msgid "Availability"
+msgstr ""
+
+#: admin-lending-table.php:68
+msgid "Edit"
+msgstr ""
+
+#: admin-lending-table.php:71
+#: admin-lending-table.php:87
+msgid "Delete"
+msgstr ""
+
+#: admin-lending-table.php:84
+msgid "Mark as returned"
+msgstr ""
+
+#: admin-lending-table.php:103
+msgid "Status"
+msgstr ""
+
+#: admin-options.php:143
+msgid "Make Sharing Club public (visible without login)"
+msgstr ""
+
+#: admin-options.php:150
+msgid "Hide the comment form"
+msgstr ""
+
+#: sharing-club.php:17
+msgid "Please enter a rating between 0 and 5 (or leave empty)."
+msgstr ""
+
+#: sharing-club.php:18
+msgid "Please enter a valid comment."
+msgstr ""
+
+#: sharing-club.php:22
+msgid "Please enter a valid date."
+msgstr ""
+
+#: sharing-club.php:25
+msgid "Please select a user."
+msgstr ""
+
+#: sharing-club.php:26
+msgid "Please select an object."
+msgstr ""
+
+#: sharing-club.php:122
+msgid "Your current borrowed items"
+msgstr ""
+
+#: sharing-club.php:123
+msgid "Here is your overview of currently lent items:"
+msgstr ""
+
+#: sharing-club.php:124
+msgid "Item"
+msgstr ""
+
+#: sharing-club.php:125
+msgid "With kind regards,"
+msgstr ""
+
+#: sharing-club.php:144
+#: sharing-club.php:147
+msgid "Objects"
+msgstr ""
+
+#: sharing-club.php:148
+msgid "All objects"
+msgstr ""
+
+#: sharing-club.php:149
+#: sharing-club.php:157
+msgid "Add object"
+msgstr ""
+
+#: sharing-club.php:150
+msgid "Edit object"
+msgstr ""
+
+#: sharing-club.php:151
+msgid "New object"
+msgstr ""
+
+#: sharing-club.php:152
+msgid "View object"
+msgstr ""
+
+#: sharing-club.php:153
+msgid "Search object"
+msgstr ""
+
+#: sharing-club.php:154
+msgid "Object not found"
+msgstr ""
+
+#: sharing-club.php:155
+msgid "Trashed object not found"
+msgstr ""
+
+#: sharing-club.php:366
+#, php-format
+msgid "%s requested an object"
+msgstr ""
+
+#: sharing-club.php:367
+msgid "There's a new request for lending. You can manage the requests connecting to :"
+msgstr ""
+
+#: templates/single-shared_item.php:37
+msgid "review(s)"
+msgstr ""
+
+#: templates/single-shared_item.php:72
+msgid "Your review"
+msgstr ""
+
+#: templates/single-shared_item.php:77
+msgid "Your rating"
+msgstr ""
+
+#: templates/single-shared_item.php:86
+msgid "Send"
+msgstr ""
+
+#: templates/Walker_Category_Posts.php:54
+#, php-format
+msgid "This object is currently borrowed by %s."
+msgstr ""

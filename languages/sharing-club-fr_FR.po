@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-13 16:08+0000\n"
-"PO-Revision-Date: 2026-08-06 21:53+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sharing-club\n"
+"POT-Creation-Date: 2026-11-02T20:27:10+01:00\n"
+"PO-Revision-Date: 2026-11-02 20:34+0100\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -14,104 +14,147 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 "X-Loco-Version: 2.2.1; wp-5.1.1\n"
 
-#: admin-lending-form-display.php:56
+#. Plugin Name of the plugin
+#: sharing-club.php admin-options.php:60 admin-options.php:61
+#: admin-options.php:133 sharing-club.php:146
+msgid "Sharing Club"
+msgstr "Sharing Club"
+
+#. Plugin URI of the plugin
+#: sharing-club.php
+msgid "https://wordpress.org/plugins/sharing-club/"
+msgstr "https://wordpress.org/plugins/sharing-club/"
+
+#. Description of the plugin
+#: sharing-club.php
+msgid ""
+"Share books, dvd, tools, toys or any object with your community. Your users "
+"can easily lend, borrow and rate items and you know who borrowed what."
+msgstr ""
+"Partagez livres, dvd, outils ou autres objets avec vos utilisateurs. Ils "
+"peuvent facilement les prêter, emprunter ou noter et vous savez où est quoi."
+
+#. Author of the plugin
+#: sharing-club.php
+msgid "Manu Z."
+msgstr "Manu Z."
+
+#. Author URI of the plugin
+#: sharing-club.php
+msgid "http://netdelight.be/"
+msgstr "http://netdelight.be/"
+
+#: admin-lending-form-display.php:66
 msgid "Item was successfully saved"
 msgstr "Cet élément a bien été enregistré"
 
-#: admin-lending-form-display.php:58
+#: admin-lending-form-display.php:68
 msgid "There was an error while saving item"
 msgstr "Une erreur est survenue lors de l'enregistrement"
 
-#: admin-lending-form-display.php:63
+#: admin-lending-form-display.php:75
 msgid "Item was successfully updated"
 msgstr "Cet élément a bien été mis à jour"
 
-#: admin-lending-form-display.php:65
+#: admin-lending-form-display.php:77
 msgid "There was an error while updating item"
 msgstr "Une erreur est survenue lors de la mise à jour"
 
-#: admin-lending-form-display.php:85
+#: admin-lending-form-display.php:97
 msgid "Item not found"
 msgstr "Cet élément n'a pas été trouvé"
 
-#: admin-lending-form-display.php:91
+#: admin-lending-form-display.php:106
 msgid "Lending data"
 msgstr "Détails du prêt"
 
-#: admin-lending-form-display.php:96 sharing-club.php:167 sharing-club.php:168
-msgid "Lendings"
-msgstr "Prêts"
+#: admin-lending-form-display.php:111 sharing-club.php:284 sharing-club.php:285
+msgid "Lending form"
+msgstr "Formulaire de prêt"
 
-#: admin-lending-form-display.php:96 templates/single-shared_item.php:91
+#: admin-lending-form-display.php:111 templates/single-shared_item.php:90
 msgid "Back to list"
 msgstr "Retour à la liste"
 
-#: admin-lending-form-display.php:116
+#: admin-lending-form-display.php:131
 msgid "Save"
 msgstr "Enregistrer"
 
-#: admin-lending-form-display.php:134 admin-lending-table.php:42
+#: admin-lending-form-display.php:150 admin-lending-table.php:47
+#: admin-lending-table.php:100
 msgid "User"
 msgstr "Utilisateur"
 
-#: admin-lending-form-display.php:142 admin-lending-table.php:41
+#: admin-lending-form-display.php:158 admin-lending-table.php:46
+#: admin-lending-table.php:101
 msgid "Object"
 msgstr "Objet"
 
-#: admin-lending-form-display.php:150 admin-lending-table.php:43
+#: admin-lending-form-display.php:209 admin-lending-table.php:48
 msgid "Lending date"
 msgstr "Date de prêt"
 
-#: admin-lending-form-display.php:153 admin-lending-form-display.php:161
-msgid "YYYY-MM-DD"
-msgstr "JJ-MM-AAAA"
-
-#: admin-lending-form-display.php:158 admin-lending-table.php:44
+#: admin-lending-form-display.php:217 admin-lending-table.php:49
+#: sharing-club.php:124
 msgid "Return date"
 msgstr "Date de retour"
 
-#: admin-lending-form-display.php:166 templates/single-shared_item.php:70
+#: admin-lending-form-display.php:226 templates/single-shared_item.php:69
 msgid "Reviews"
 msgstr "Avis"
 
-#: admin-lending-form-display.php:174 admin-lending-table.php:46
+#: admin-lending-form-display.php:234 admin-lending-table.php:51
 msgid "Admin notes"
 msgstr "Notes de l'admin"
 
-#: admin-lending-form-display.php:182
+#: admin-lending-form-display.php:242
 msgid "Rating"
 msgstr "Note"
 
-#: admin-lending-table-display.php:33
+#: admin-lending-table-display.php:32 sharing-club.php:276 sharing-club.php:277
+msgid "Lendings"
+msgstr "Prêts"
+
+#: admin-lending-table-display.php:32
 msgid "Add new lending"
 msgstr "Ajouter un prêt"
 
-#: admin-lending-table-display.php:37
+#: admin-lending-table-display.php:36
 #, php-format
 msgid "Items deleted: %d"
 msgstr "Elements supprimés : %d"
 
-#: admin-lending-table.php:45
+#: admin-lending-table.php:30 admin-lending-table.php:104
+msgid "lent"
+msgstr "en prêt"
+
+#: admin-lending-table.php:31
+msgid "requested"
+msgstr "demandé"
+
+#: admin-lending-table.php:32 admin-lending-table.php:105
+msgid "returned"
+msgstr "disponible"
+
+#: admin-lending-table.php:50
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: admin-lending-table.php:65
+#: admin-lending-table.php:68
 msgid "Edit"
 msgstr "Éditer"
 
-#: admin-lending-table.php:66 admin-lending-table.php:79
+#: admin-lending-table.php:71 admin-lending-table.php:87
 msgid "Delete"
 msgstr "Supprimer"
 
-#: admin-lending-table.php:80
+#: admin-lending-table.php:84
 msgid "Mark as returned"
 msgstr "Marquer comme rendu"
 
-#. Name of the plugin
-#: admin-options.php:60 admin-options.php:61 admin-options.php:133
-#: sharing-club.php:67
-msgid "Sharing Club"
-msgstr "Sharing Club"
+#: admin-lending-table.php:103
+msgid "Status"
+msgstr "Statut"
 
 #: admin-options.php:143
 msgid "Make Sharing Club public (visible without login)"
@@ -121,76 +164,84 @@ msgstr "Rendre Sharing Club public (visible sans connexion)"
 msgid "Hide the comment form"
 msgstr "Masquer le formulaire de commentaire"
 
-#: sharing-club.php:15
-msgid "lent"
-msgstr "en prêt"
-
-#: sharing-club.php:16 templates/Walker_Category_Posts.php:56
-msgid "returned"
-msgstr "disponible"
-
 #: sharing-club.php:17
-msgid "requested"
-msgstr "demandé"
-
-#: sharing-club.php:28
 msgid "Please enter a rating between 0 and 5 (or leave empty)."
 msgstr "Veuillez entrer une note entre 0 et 5 (ou laisser vide)"
 
-#: sharing-club.php:29
+#: sharing-club.php:18
 msgid "Please enter a valid comment."
 msgstr "Veuillez entrer un avis valide."
 
-#: sharing-club.php:33
+#: sharing-club.php:22
 msgid "Please enter a valid date."
 msgstr "Veuillez entrer une date valide."
 
-#: sharing-club.php:65 sharing-club.php:68
+#: sharing-club.php:25
+msgid "Please select a user."
+msgstr "Veuillez sélectionner un utilisateur."
+
+#: sharing-club.php:26
+msgid "Please select an object."
+msgstr "Veuillez sélectionner un objet."
+
+#: sharing-club.php:122
+msgid "Your current borrowed items"
+msgstr "Vos emprunts en cours"
+
+#: sharing-club.php:123
+msgid "Here is your overview of currently lent items:"
+msgstr "Voici un aperçu des articles que vous avez actuellement empruntés :"
+
+#: sharing-club.php:124
+msgid "Item"
+msgstr "Article"
+
+#: sharing-club.php:125
+msgid "With kind regards,"
+msgstr "Cordialement,"
+
+#: sharing-club.php:144 sharing-club.php:147
 msgid "Objects"
 msgstr "Objets"
 
-#: sharing-club.php:69
+#: sharing-club.php:148
 msgid "All objects"
 msgstr "Tous les objets"
 
-#: sharing-club.php:70 sharing-club.php:78
+#: sharing-club.php:149 sharing-club.php:157
 msgid "Add object"
 msgstr "Ajouter un objet"
 
-#: sharing-club.php:71
+#: sharing-club.php:150
 msgid "Edit object"
 msgstr "Editer un objet"
 
-#: sharing-club.php:72
+#: sharing-club.php:151
 msgid "New object"
 msgstr "Nouvel objet"
 
-#: sharing-club.php:73
+#: sharing-club.php:152
 msgid "View object"
 msgstr "Voir l'objet"
 
-#: sharing-club.php:74
+#: sharing-club.php:153
 msgid "Search object"
 msgstr "Chercher un objet"
 
-#: sharing-club.php:75
+#: sharing-club.php:154
 msgid "Object not found"
 msgstr "Objet non trouvé"
 
-#: sharing-club.php:76
+#: sharing-club.php:155
 msgid "Trashed object not found"
 msgstr "Objet supprimé non trouvé"
 
-#: sharing-club.php:175 sharing-club.php:176
-msgid "Lending form"
-msgstr "Formulaire de prêt"
-
-#: sharing-club.php:253
+#: sharing-club.php:366
 #, php-format
 msgid "%s requested an object"
 msgstr "%s a demandé un prêt"
 
-#: sharing-club.php:254
+#: sharing-club.php:367
 msgid ""
 "There's a new request for lending. You can manage the requests connecting "
 "to :"
@@ -198,64 +249,43 @@ msgstr ""
 "Il y a une nouvelle demande de prêt. Vous pouvez gérer cette demande en vous "
 "connectant sur :"
 
-#: templates/single-shared_item.php:39
+#: templates/single-shared_item.php:37
 msgid "review(s)"
 msgstr "avis"
 
-#: templates/single-shared_item.php:51
-msgid "You have requested this object."
-msgstr "Vous avez demandé cet objet."
+#: templates/single-shared_item.php:72
+msgid "Your review"
+msgstr "Votre avis"
 
-#: templates/single-shared_item.php:52
-msgid "You borrowed this object."
-msgstr "Vous avez emprunté cet objet."
+#: templates/single-shared_item.php:77
+msgid "Your rating"
+msgstr "Votre note"
 
-#: templates/single-shared_item.php:53 templates/Walker_Category_Posts.php:55
+#: templates/single-shared_item.php:86
+msgid "Send"
+msgstr "Envoyer"
+
+#: templates/Walker_Category_Posts.php:54
 #, php-format
 msgid "This object is currently borrowed by %s."
 msgstr "Cet objet est actuellement en prêt chez %s."
 
-#: templates/single-shared_item.php:60
-msgid "Book"
-msgstr "Réserver"
+#~ msgid "YYYY-MM-DD"
+#~ msgstr "JJ-MM-AAAA"
 
-#: templates/single-shared_item.php:64
+#~ msgid "You have requested this object."
+#~ msgstr "Vous avez demandé cet objet."
+
+#~ msgid "You borrowed this object."
+#~ msgstr "Vous avez emprunté cet objet."
+
+#~ msgid "Book"
+#~ msgstr "Réserver"
+
 #, php-format
-msgid ""
-"Please <a href='%s'>register</a> or <a href='%s'>log in</a> to book this "
-"item."
-msgstr ""
-"Veuillez <a href='%s'>vous enregistrer</a> ou <a href='%s'>vous connecter</"
-"a> pour réserver cet objet."
-
-#: templates/single-shared_item.php:73
-msgid "Your review"
-msgstr "Votre avis"
-
-#: templates/single-shared_item.php:78
-msgid "Your rating"
-msgstr "Votre note"
-
-#: templates/single-shared_item.php:87
-msgid "Send"
-msgstr "Envoyer"
-
-#. Description of the plugin
-msgid ""
-"Share books, dvd, tools, toys or any object with your community. Your users "
-"can easily lend, borrow and rate items and you know who borrowed what."
-msgstr ""
-"Partagez livres, dvd, outils ou autres objets avec vos utilisateurs. Ils "
-"peuvent facilement les prêter, emprunter ou noter et vous savez où est quoi."
-
-#. URI of the plugin
-msgid "https://wordpress.org/plugins/sharing-club/"
-msgstr "https://wordpress.org/plugins/sharing-club/"
-
-#. Author of the plugin
-msgid "Manu Z."
-msgstr "Manu Z."
-
-#. Author URI of the plugin
-msgid "http://netdelight.be/"
-msgstr "http://netdelight.be/"
+#~ msgid ""
+#~ "Please <a href='%s'>register</a> or <a href='%s'>log in</a> to book this "
+#~ "item."
+#~ msgstr ""
+#~ "Veuillez <a href='%s'>vous enregistrer</a> ou <a href='%s'>vous "
+#~ "connecter</a> pour réserver cet objet."
