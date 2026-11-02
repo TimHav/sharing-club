@@ -111,7 +111,7 @@ function scwp_init() {
             'capabilities' => array(
                 'edit_post' => 'edit_shared_item',
                 'edit_posts' => 'edit_shared_item',
-                'edit_others_posts' => 'edit_other_shared_item',
+                'edit_others_posts' => 'edit_others_shared_item',
                 'publish_posts' => 'publish_shared_item',
                 'read_post' => 'read_shared_item',
                 'read_private_posts' => 'read_private_shared_item',
@@ -137,8 +137,10 @@ function scwp_init() {
             if ( $contributor ) {
                 $contributor->add_cap( 'read_shared_item' );
                 $contributor->add_cap( 'edit_shared_item' );
+                $contributor->add_cap( 'edit_others_shared_item' );
                 $contributor->add_cap( 'read_private_shared_item' );
                 $contributor->add_cap( 'lend_shared_item' );
+                $contributor->add_cap( 'publish_shared_item' );
             }
         }
 
@@ -332,4 +334,3 @@ add_action( 'template_redirect', 'scwp_process_data' );
 
 // ADMIN OPTION PAGE
 require_once plugin_dir_path( __FILE__ ) . 'admin-options.php';
-
