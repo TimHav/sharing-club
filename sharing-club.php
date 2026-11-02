@@ -66,6 +66,69 @@ function scwp_plugin_activate() {
 }
 register_activation_hook( __FILE__, 'scwp_plugin_activate' );
 
+function scwp_send_weekly_lending_digest($activity_date = null) {
+    if (empty($activity_date)) {
+        $activity_date = current_time('Y-m-d');
+    }
+
+    if (!is_string($activity_date) || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $activity_date)) {
+        return;
+    }
+
+    global $wpdb;
+    $active_user_ids = $wpdb->get_col($wpdb->prepare(
+        "SELECT DISTINCT user_id
+        FROM {$wpdb->comments}
+        WHERE comment_type = 'lending'
+          AND user_id > 0
+          AND ((comment_approved = 'lent' AND DATE(comment_date) = %s)
+            OR (comment_approved = 'returned' AND DATE(comment_date_gmt) = %s))",
+        $activity_date,
+        $activity_date
+    ));
+
+    foreach ($active_user_ids as $user_id) {
+        $user = get_userdata((int) $user_id);
+        if (!$user || !is_email($user->user_email) || strtolower($user->user_email) !== 'tim.havinga@gmail.com') {
+            continue;
+        }
+
+        $loans = $wpdb->get_results($wpdb->prepare(
+            "SELECT post_title AS item_name,
+                comment_date_gmt AS return_date_ymd,
+                DATE_FORMAT(comment_date_gmt, '%%d-%%m-%%Y') AS return_date
+            FROM {$wpdb->comments}
+            INNER JOIN {$wpdb->posts} ON ID = comment_post_ID
+            WHERE comment_type = 'lending'
+              AND comment_approved = 'lent'
+              AND user_id = %d
+              AND post_type = 'shared_item'
+            ORDER BY post_title ASC",
+            (int) $user_id
+        ));
+        if (empty($loans)) {
+            continue;
+        }
+
+        $rows = '';
+        foreach ($loans as $loan) {
+            $return_date = $loan->return_date_ymd ? new DateTimeImmutable($loan->return_date_ymd) : null;
+            $is_overdue = $return_date && $return_date < new DateTimeImmutable('today');
+            $row_style = $is_overdue ? ' style="background-color:#fff4f4; color:#8a3d3d;"' : '';
+            $rows .= '<tr' . $row_style . '><td>' . esc_html($loan->item_name) . '</td><td>' . esc_html($loan->return_date) . '</td></tr>';
+        }
+
+        $site_name = get_bloginfo('name');
+        $subject = __('Your current borrowed items', 'sharing-club') . ' - ' . $site_name;
+        $message = '<p>' . esc_html__('Here is your overview of currently lent items:', 'sharing-club') . '</p>';
+        $message .= '<table style="border-collapse: collapse; width: 100%;"><thead><tr><th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">' . esc_html__('Item', 'sharing-club') . '</th><th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">' . esc_html__('Return date', 'sharing-club') . '</th></tr></thead><tbody>' . $rows . '</tbody></table>';
+        $message .= '<p>' . esc_html__('With kind regards,', 'sharing-club') . '<br>' . esc_html($site_name) . '</p>';
+        wp_mail($user->user_email, $subject, $message, array('Content-Type: text/html; charset=UTF-8'));
+    }
+
+}
+add_action('scwp_weekly_lending_digest', 'scwp_send_weekly_lending_digest', 10, 1);
+
 function scwp_load_textdomain() {
     load_plugin_textdomain(
         'sharing-club',

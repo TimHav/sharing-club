@@ -47,6 +47,8 @@ The items list will then be available on this "archive page" : `http://yourblog.
 
 You'll get an e-mail notification when an item is requested.
 
+The plugin can also send a lending digest by cron for a specific day. The cron job triggers the digest action with a date value (for example `YYYY-MM-DD`), and the code uses that day to find users who lent or returned an item that date. Dates are compared without times, and no email is sent when the user has no items currently lent.
+
 You can also customize how the items will be listed and displayed using your own templates :
 
 * 	`templates/archive-shared_item.php` display the items list based on a custom [walker](https://codex.wordpress.org/Class_Reference/Walker) : `templates/Walker_Category_Posts.php`
