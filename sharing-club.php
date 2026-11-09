@@ -90,7 +90,7 @@ function scwp_send_weekly_lending_digest($activity_date = null) {
 
     foreach ($active_user_ids as $user_id) {
         $user = get_userdata((int) $user_id);
-        if (!$user || !is_email($user->user_email) || strtolower($user->user_email) !== 'tim.havinga@gmail.com') {
+        if (!$user || !is_email($user->user_email)) {
             continue;
         }
 
