@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sharing-club\n"
-"POT-Creation-Date: 2026-11-09T19:54:15+01:00\n"
-"PO-Revision-Date: 2026-11-09 19:56+0100\n"
+"POT-Creation-Date: 2026-11-09T21:29:57+01:00\n"
+"PO-Revision-Date: 2026-11-09 21:32+0100\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -68,7 +68,7 @@ msgstr "Cet élément n'a pas été trouvé"
 msgid "Lending data"
 msgstr "Détails du prêt"
 
-#: admin-lending-form-display.php:111 sharing-club.php:286 sharing-club.php:287
+#: admin-lending-form-display.php:111 sharing-club.php:415 sharing-club.php:416
 msgid "Lending form"
 msgstr "Formulaire de prêt"
 
@@ -111,7 +111,7 @@ msgstr "Notes de l'admin"
 msgid "Rating"
 msgstr "Note"
 
-#: admin-lending-table-display.php:32 sharing-club.php:278 sharing-club.php:279
+#: admin-lending-table-display.php:32 sharing-club.php:407 sharing-club.php:408
 msgid "Lendings"
 msgstr "Prêts"
 
@@ -240,12 +240,79 @@ msgstr "Objet non trouvé"
 msgid "Trashed object not found"
 msgstr "Objet supprimé non trouvé"
 
-#: sharing-club.php:368
+#: sharing-club.php:298 sharing-club.php:346
+msgid "You are not allowed to add a lender."
+msgstr "Vous n'êtes pas autorisé(e) à ajouter un prêteur."
+
+#: sharing-club.php:351
+msgid "Lender added successfully."
+msgstr "Cet élément a bien été enregistré."
+
+#: sharing-club.php:352
+msgid "The lender was created, but some member details could not be saved."
+msgstr ""
+"Le prêteur a été créé, mais certaines informations relatives aux membres "
+"n'ont pas pu être enregistrées."
+
+#: sharing-club.php:353
+msgid ""
+"The lender could not be created. The username or e-mail address may already "
+"be in use."
+msgstr ""
+"Le prêteur a été créé, mais certaines informations relatives aux membres "
+"n'ont pas pu être enregistrées."
+
+#: sharing-club.php:354
+msgid ""
+"Please enter a valid e-mail address, first name, last name, and number of "
+"children."
+msgstr ""
+"Veuillez saisir une adresse e-mail valide, votre prénom, votre nom et le "
+"nombre d'enfants."
+
+#: sharing-club.php:358 sharing-club.php:398 sharing-club.php:423
+#: sharing-club.php:424
+msgid "Add lender"
+msgstr "Ajouter un prêteur"
+
+#: sharing-club.php:369
+msgid "Member ID"
+msgstr "ID Membre"
+
+#: sharing-club.php:373
+msgid "E-mail"
+msgstr "E-mail"
+
+#: sharing-club.php:377
+msgid "First name"
+msgstr "Prénom"
+
+#: sharing-club.php:381
+msgid "Last name"
+msgstr "Nom de famille"
+
+#: sharing-club.php:385
+msgid "Phone number"
+msgstr "Numéro de téléphone"
+
+#: sharing-club.php:389
+msgid "Aantal kinderen"
+msgstr "Nombre d'enfants"
+
+#: sharing-club.php:392
+msgid "1"
+msgstr "1"
+
+#: sharing-club.php:393
+msgid "2+"
+msgstr "2+"
+
+#: sharing-club.php:505
 #, php-format
 msgid "%s requested an object"
 msgstr "%s a demandé un prêt"
 
-#: sharing-club.php:369
+#: sharing-club.php:506
 msgid ""
 "There's a new request for lending. You can manage the requests connecting "
 "to :"

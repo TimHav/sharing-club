@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plugins - Sharing Club - Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sharing-club\n"
-"POT-Creation-Date: 2026-11-09T19:54:15+01:00\n"
-"PO-Revision-Date: 2026-11-09 19:56+0100\n"
+"POT-Creation-Date: 2026-11-09T21:29:57+01:00\n"
+"PO-Revision-Date: 2026-11-09 21:35+0100\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
 "Language-Team: Dutch (Netherlands)\n"
 "Language: nl_NL\n"
@@ -69,7 +69,7 @@ msgstr "Item niet gevonden"
 msgid "Lending data"
 msgstr "Gegevens van het geleende item"
 
-#: admin-lending-form-display.php:111 sharing-club.php:286 sharing-club.php:287
+#: admin-lending-form-display.php:111 sharing-club.php:415 sharing-club.php:416
 msgid "Lending form"
 msgstr "Uitleenformulier"
 
@@ -112,7 +112,7 @@ msgstr "Beheerberichten"
 msgid "Rating"
 msgstr "Waardering"
 
-#: admin-lending-table-display.php:32 sharing-club.php:278 sharing-club.php:279
+#: admin-lending-table-display.php:32 sharing-club.php:407 sharing-club.php:408
 msgid "Lendings"
 msgstr "Uitgeleende objecten"
 
@@ -241,12 +241,77 @@ msgstr "Object niet gevonden"
 msgid "Trashed object not found"
 msgstr "Verwijderd object niet gevonden"
 
-#: sharing-club.php:368
+#: sharing-club.php:298 sharing-club.php:346
+msgid "You are not allowed to add a lender."
+msgstr "Je mag geen lener toevoegen."
+
+#: sharing-club.php:351
+msgid "Lender added successfully."
+msgstr "Lener succesvol toegevoegd."
+
+#: sharing-club.php:352
+msgid "The lender was created, but some member details could not be saved."
+msgstr ""
+"De lener is toegevoegd, maar sommige details konden niet worden opgeslagen."
+
+#: sharing-club.php:353
+msgid ""
+"The lender could not be created. The username or e-mail address may already "
+"be in use."
+msgstr ""
+"De lener kon niet worden opgeslagen. Het e-mailadres is waarschijnlijk al in "
+"gebruik."
+
+#: sharing-club.php:354
+msgid ""
+"Please enter a valid e-mail address, first name, last name, and number of "
+"children."
+msgstr ""
+"Voer een valide e-mailadres, voornaam, achternaam en aantal kinderen in."
+
+#: sharing-club.php:358 sharing-club.php:398 sharing-club.php:423
+#: sharing-club.php:424
+msgid "Add lender"
+msgstr "Lener toevoegen"
+
+#: sharing-club.php:369
+msgid "Member ID"
+msgstr "Lidnummer"
+
+#: sharing-club.php:373
+msgid "E-mail"
+msgstr "E-mailadres"
+
+#: sharing-club.php:377
+msgid "First name"
+msgstr "Voornaam"
+
+#: sharing-club.php:381
+msgid "Last name"
+msgstr "Achternaam"
+
+#: sharing-club.php:385
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+#: sharing-club.php:389
+msgid "Aantal kinderen"
+msgstr "Aantal kinderen"
+
+#: sharing-club.php:392
+msgid "1"
+msgstr "1"
+
+#: sharing-club.php:393
+msgid "2+"
+msgstr "2+"
+
+#: sharing-club.php:505
 #, php-format
 msgid "%s requested an object"
 msgstr "%s heeft een object gevraagd"
 
-#: sharing-club.php:369
+#: sharing-club.php:506
 msgid ""
 "There's a new request for lending. You can manage the requests connecting "
 "to :"

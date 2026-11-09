@@ -271,6 +271,135 @@ function scwp_display_lending_form(){
         require_once plugin_dir_path( __FILE__ ) . 'admin-lending-form-display.php';
     }
 }
+function scwp_get_next_lender_username() {
+    global $wpdb;
+
+    $last_username = $wpdb->get_var(
+        "SELECT MAX(CAST(user_login AS UNSIGNED))
+        FROM {$wpdb->users}
+        WHERE user_login REGEXP '^[0-9]+$'"
+    );
+
+    return (string) ( (int) $last_username + 1 );
+}
+function scwp_redirect_lender_form( $status ) {
+    $url = add_query_arg(
+        array(
+            'page' => 'add_lender',
+            'scwp_lender_status' => $status,
+        ),
+        admin_url( 'edit.php?post_type=shared_item' )
+    );
+    wp_safe_redirect( $url );
+    exit;
+}
+function scwp_process_add_lender() {
+    if ( ! current_user_can( 'lend_shared_item' ) ) {
+        wp_die( esc_html__( 'You are not allowed to add a lender.', 'sharing-club' ), '', array( 'response' => 403 ) );
+    }
+
+    check_admin_referer( 'scwp_add_lender' );
+
+    $email = isset( $_POST['email'] ) && is_string( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+    $first_name = isset( $_POST['first_name'] ) && is_string( $_POST['first_name'] ) ? sanitize_text_field( wp_unslash( $_POST['first_name'] ) ) : '';
+    $last_name = isset( $_POST['last_name'] ) && is_string( $_POST['last_name'] ) ? sanitize_text_field( wp_unslash( $_POST['last_name'] ) ) : '';
+    $kids = isset( $_POST['kids'] ) && is_string( $_POST['kids'] ) ? sanitize_text_field( wp_unslash( $_POST['kids'] ) ) : '';
+    $phone = isset( $_POST['phone'] ) && is_string( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '';
+
+    if ( ! is_email( $email ) || '' === $first_name || '' === $last_name || ! in_array( $kids, array( '1', '2' ), true ) ) {
+        scwp_redirect_lender_form( 'invalid' );
+    }
+
+    $user_id = wp_insert_user(
+        array(
+            'user_login' => scwp_get_next_lender_username(),
+            'user_pass' => wp_generate_password( 24, true, true ),
+            'user_email' => $email,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'role' => 'subscriber',
+        )
+    );
+
+    if ( is_wp_error( $user_id ) ) {
+        scwp_redirect_lender_form( 'create_error' );
+    }
+
+    $member_fields = array(
+        'kids' => $kids,
+        'phone' => $phone,
+        'date_added' => current_time( 'd-m-Y' ),
+    );
+    $meta_failed = false;
+    foreach ( $member_fields as $field_name => $field_value ) {
+        update_user_meta( $user_id, $field_name, $field_value );
+        if ( (string) get_user_meta( $user_id, $field_name, true ) !== (string) $field_value ) {
+            $meta_failed = true;
+        }
+    }
+
+    scwp_redirect_lender_form( $meta_failed ? 'created_meta_error' : 'created' );
+}
+add_action( 'admin_post_scwp_add_lender', 'scwp_process_add_lender' );
+function scwp_display_lender_form() {
+    if ( ! current_user_can( 'lend_shared_item' ) ) {
+        wp_die( esc_html__( 'You are not allowed to add a lender.', 'sharing-club' ), '', array( 'response' => 403 ) );
+    }
+
+    $status = isset( $_GET['scwp_lender_status'] ) && is_string( $_GET['scwp_lender_status'] ) ? sanitize_key( wp_unslash( $_GET['scwp_lender_status'] ) ) : '';
+    $notices = array(
+        'created' => array( 'success', __( 'Lender added successfully.', 'sharing-club' ) ),
+        'created_meta_error' => array( 'error', __( 'The lender was created, but some member details could not be saved.', 'sharing-club' ) ),
+        'create_error' => array( 'error', __( 'The lender could not be created. The username or e-mail address may already be in use.', 'sharing-club' ) ),
+        'invalid' => array( 'error', __( 'Please enter a valid e-mail address, first name, last name, and number of children.', 'sharing-club' ) ),
+    );
+    ?>
+    <div class="wrap">
+        <h1><?php esc_html_e( 'Add lender', 'sharing-club' ); ?></h1>
+        <?php if ( isset( $notices[ $status ] ) ) : ?>
+            <div class="notice notice-<?php echo esc_attr( $notices[ $status ][0] ); ?> is-dismissible">
+                <p><?php echo esc_html( $notices[ $status ][1] ); ?></p>
+            </div>
+        <?php endif; ?>
+        <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+            <input type="hidden" name="action" value="scwp_add_lender">
+            <?php wp_nonce_field( 'scwp_add_lender' ); ?>
+            <table class="form-table">
+                <tr>
+                    <th scope="row"><label for="scwp_lender_username"><?php esc_html_e( 'Member ID', 'sharing-club' ); ?>*</label></th>
+                    <td><?php echo esc_attr( scwp_get_next_lender_username() ); ?></td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="scwp_lender_email"><?php esc_html_e( 'E-mail', 'sharing-club' ); ?>*</label></th>
+                    <td><input type="email" id="scwp_lender_email" name="email" class="regular-text" required></td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="scwp_lender_first_name"><?php esc_html_e( 'First name', 'sharing-club' ); ?>*</label></th>
+                    <td><input type="text" id="scwp_lender_first_name" name="first_name" class="regular-text" required></td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="scwp_lender_last_name"><?php esc_html_e( 'Last name', 'sharing-club' ); ?>*</label></th>
+                    <td><input type="text" id="scwp_lender_last_name" name="last_name" class="regular-text" required></td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="scwp_lender_phone"><?php esc_html_e( 'Phone number', 'sharing-club' ); ?>*</label></th>
+                    <td><input type="tel" id="scwp_lender_phone" name="phone" class="regular-text" required></td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="scwp_lender_kids"><?php esc_html_e( 'Aantal kinderen', 'sharing-club' ); ?>*</label></th>
+                    <td>
+                        <fieldset id="scwp_lender_kids">
+                            <label><input type="radio" name="kids" value="1" required checked> <?php esc_html_e( '1', 'sharing-club' ); ?></label><br>
+                            <label><input type="radio" name="kids" value="2" required> <?php esc_html_e( '2+', 'sharing-club' ); ?></label>
+                        </fieldset>
+                    </td>
+                </tr>
+            </table>
+            <?php submit_button( __( 'Add lender', 'sharing-club' ) ); ?>
+        </form>
+    </div>
+    <?php
+}
 function scwp_add_menu_item(){
     if ( current_user_can( 'lend_shared_item' ) ) {
         add_submenu_page(
@@ -288,6 +417,14 @@ function scwp_add_menu_item(){
             'lend_shared_item',   // capability
             'display_lending_form',     // menu slug
             'scwp_display_lending_form' // callback function
+        );
+        add_submenu_page(
+            'edit.php?post_type=shared_item',
+            __( 'Add lender', 'sharing-club' ),
+            __( 'Add lender', 'sharing-club' ),
+            'lend_shared_item',
+            'add_lender',
+            'scwp_display_lender_form'
         );
     }
     // Hide "Add New" for users without edit_shared_item capability

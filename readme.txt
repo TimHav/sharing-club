@@ -42,6 +42,7 @@ The easiest way is to let Wordpress do the job for you :
 2. Log into WordPress admin and activate the *Sharing Club* plugin through the *Plugins* menu
 3. Go to *Sharing Club > Add object* in the left-hand menu to add the item you want to lend
 4. Manage your lendings through *Sharing Club > Lendings*
+5. Contributors can add a lender through *Sharing Club > Add lender*
 
 The items list will then be available on this "archive page" : `http://yourblog.yourdomain*/shared_item/*`
 

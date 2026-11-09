@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-09T19:54:15+01:00\n"
+"POT-Creation-Date: 2026-11-09T21:29:57+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: sharing-club\n"
@@ -68,8 +68,8 @@ msgid "Lending data"
 msgstr ""
 
 #: admin-lending-form-display.php:111
-#: sharing-club.php:286
-#: sharing-club.php:287
+#: sharing-club.php:415
+#: sharing-club.php:416
 msgid "Lending form"
 msgstr ""
 
@@ -120,8 +120,8 @@ msgid "Rating"
 msgstr ""
 
 #: admin-lending-table-display.php:32
-#: sharing-club.php:278
-#: sharing-club.php:279
+#: sharing-club.php:407
+#: sharing-club.php:408
 msgid "Lendings"
 msgstr ""
 
@@ -255,12 +255,72 @@ msgstr ""
 msgid "Trashed object not found"
 msgstr ""
 
-#: sharing-club.php:368
+#: sharing-club.php:298
+#: sharing-club.php:346
+msgid "You are not allowed to add a lender."
+msgstr ""
+
+#: sharing-club.php:351
+msgid "Lender added successfully."
+msgstr ""
+
+#: sharing-club.php:352
+msgid "The lender was created, but some member details could not be saved."
+msgstr ""
+
+#: sharing-club.php:353
+msgid "The lender could not be created. The username or e-mail address may already be in use."
+msgstr ""
+
+#: sharing-club.php:354
+msgid "Please enter a valid e-mail address, first name, last name, and number of children."
+msgstr ""
+
+#: sharing-club.php:358
+#: sharing-club.php:398
+#: sharing-club.php:423
+#: sharing-club.php:424
+msgid "Add lender"
+msgstr ""
+
+#: sharing-club.php:369
+msgid "Member ID"
+msgstr ""
+
+#: sharing-club.php:373
+msgid "E-mail"
+msgstr ""
+
+#: sharing-club.php:377
+msgid "First name"
+msgstr ""
+
+#: sharing-club.php:381
+msgid "Last name"
+msgstr ""
+
+#: sharing-club.php:385
+msgid "Phone number"
+msgstr ""
+
+#: sharing-club.php:389
+msgid "Aantal kinderen"
+msgstr ""
+
+#: sharing-club.php:392
+msgid "1"
+msgstr ""
+
+#: sharing-club.php:393
+msgid "2+"
+msgstr ""
+
+#: sharing-club.php:505
 #, php-format
 msgid "%s requested an object"
 msgstr ""
 
-#: sharing-club.php:369
+#: sharing-club.php:506
 msgid "There's a new request for lending. You can manage the requests connecting to :"
 msgstr ""
 
