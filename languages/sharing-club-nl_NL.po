@@ -2,20 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plugins - Sharing Club - Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sharing-club\n"
-"POT-Creation-Date: 2026-11-02T20:27:10+01:00\n"
-"PO-Revision-Date: 2026-11-02 20:31+0100\n"
+"POT-Creation-Date: 2026-11-09T19:54:15+01:00\n"
+"PO-Revision-Date: 2026-11-09 19:56+0100\n"
 "Last-Translator: admin-petitvelo <contact@netdelight.be>\n"
-"Language-Team: Dutch (Belgium)\n"
-"Language: nl_BE\n"
+"Language-Team: Dutch (Netherlands)\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 
 #. Plugin Name of the plugin
 #: sharing-club.php admin-options.php:60 admin-options.php:61
-#: admin-options.php:133 sharing-club.php:146
+#: admin-options.php:133 sharing-club.php:148
 msgid "Sharing Club"
 msgstr "Sharing Club"
 
@@ -69,7 +69,7 @@ msgstr "Item niet gevonden"
 msgid "Lending data"
 msgstr "Gegevens van het geleende item"
 
-#: admin-lending-form-display.php:111 sharing-club.php:284 sharing-club.php:285
+#: admin-lending-form-display.php:111 sharing-club.php:286 sharing-club.php:287
 msgid "Lending form"
 msgstr "Uitleenformulier"
 
@@ -96,7 +96,7 @@ msgid "Lending date"
 msgstr "UItleendatum"
 
 #: admin-lending-form-display.php:217 admin-lending-table.php:49
-#: sharing-club.php:124
+#: sharing-club.php:126
 msgid "Return date"
 msgstr "Datum van terugkeer"
 
@@ -112,7 +112,7 @@ msgstr "Beheerberichten"
 msgid "Rating"
 msgstr "Waardering"
 
-#: admin-lending-table-display.php:32 sharing-club.php:276 sharing-club.php:277
+#: admin-lending-table-display.php:32 sharing-club.php:278 sharing-club.php:279
 msgid "Lendings"
 msgstr "Uitgeleende objecten"
 
@@ -165,84 +165,88 @@ msgstr "Maak Sharing Club publiek (zichtbaar zonder login)"
 msgid "Hide the comment form"
 msgstr "Verberg het commentaarformulier"
 
-#: sharing-club.php:17
+#: sharing-club.php:18
 msgid "Please enter a rating between 0 and 5 (or leave empty)."
 msgstr "Gelieve een waardering te geven tussen 0 en 5 (of laat blanco)."
 
-#: sharing-club.php:18
+#: sharing-club.php:19
 msgid "Please enter a valid comment."
 msgstr "Voeg een correcte reactie toe."
 
-#: sharing-club.php:22
+#: sharing-club.php:23
 msgid "Please enter a valid date."
 msgstr "Gebruik een geldige datum."
 
-#: sharing-club.php:25
+#: sharing-club.php:26
 msgid "Please select a user."
 msgstr "Selecteer een gebruiker."
 
-#: sharing-club.php:26
+#: sharing-club.php:27
 msgid "Please select an object."
 msgstr "Selecteer een object."
 
-#: sharing-club.php:122
+#: sharing-club.php:123
 msgid "Your current borrowed items"
 msgstr "Je geleende items"
 
-#: sharing-club.php:123
+#: sharing-club.php:124
+msgid "Dear lender,"
+msgstr "Beste lener,"
+
+#: sharing-club.php:125
 msgid "Here is your overview of currently lent items:"
 msgstr "Hier is een overzicht van de door jou geleende items:"
 
-#: sharing-club.php:124
+#: sharing-club.php:126
 msgid "Item"
 msgstr "Item"
 
-#: sharing-club.php:125
+#: sharing-club.php:127
 msgid "With kind regards,"
 msgstr "Met vriendelijke groeten,"
 
-#: sharing-club.php:144 sharing-club.php:147
+#: sharing-club.php:146 sharing-club.php:149
 msgid "Objects"
 msgstr "Objecten"
 
-#: sharing-club.php:148
+#: sharing-club.php:150
 msgid "All objects"
 msgstr "Alle objecten"
 
-#: sharing-club.php:149 sharing-club.php:157
+#: sharing-club.php:151 sharing-club.php:159
 msgid "Add object"
 msgstr "Object toevoegen"
 
-#: sharing-club.php:150
+#: sharing-club.php:152
 msgid "Edit object"
 msgstr "Object bewerken"
 
-#: sharing-club.php:151
+#: sharing-club.php:153
 msgid "New object"
 msgstr "Nieuw object"
 
-#: sharing-club.php:152
+#: sharing-club.php:154
 msgid "View object"
 msgstr "Object bekijken"
 
-#: sharing-club.php:153
+#: sharing-club.php:155
 msgid "Search object"
 msgstr "Zoek een object"
 
-#: sharing-club.php:154
+#: sharing-club.php:156
 msgid "Object not found"
 msgstr "Object niet gevonden"
 
-#: sharing-club.php:155
+#: sharing-club.php:157
 msgid "Trashed object not found"
 msgstr "Verwijderd object niet gevonden"
 
-#: sharing-club.php:366
+#: sharing-club.php:368
 #, php-format
 msgid "%s requested an object"
 msgstr "%s heeft een object gevraagd"
 
-#: sharing-club.php:367
+#: sharing-club.php:369
 msgid ""
 "There's a new request for lending. You can manage the requests connecting "
 "to :"

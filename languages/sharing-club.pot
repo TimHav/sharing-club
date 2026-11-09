@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-02T20:27:10+01:00\n"
+"POT-Creation-Date: 2026-11-09T19:54:15+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: sharing-club\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: admin-options.php:60
 #: admin-options.php:61
 #: admin-options.php:133
-#: sharing-club.php:146
+#: sharing-club.php:148
 msgid "Sharing Club"
 msgstr ""
 
@@ -68,8 +68,8 @@ msgid "Lending data"
 msgstr ""
 
 #: admin-lending-form-display.php:111
-#: sharing-club.php:284
-#: sharing-club.php:285
+#: sharing-club.php:286
+#: sharing-club.php:287
 msgid "Lending form"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 
 #: admin-lending-form-display.php:217
 #: admin-lending-table.php:49
-#: sharing-club.php:124
+#: sharing-club.php:126
 msgid "Return date"
 msgstr ""
 
@@ -120,8 +120,8 @@ msgid "Rating"
 msgstr ""
 
 #: admin-lending-table-display.php:32
-#: sharing-club.php:276
-#: sharing-club.php:277
+#: sharing-club.php:278
+#: sharing-club.php:279
 msgid "Lendings"
 msgstr ""
 
@@ -177,86 +177,90 @@ msgstr ""
 msgid "Hide the comment form"
 msgstr ""
 
-#: sharing-club.php:17
+#: sharing-club.php:18
 msgid "Please enter a rating between 0 and 5 (or leave empty)."
 msgstr ""
 
-#: sharing-club.php:18
+#: sharing-club.php:19
 msgid "Please enter a valid comment."
 msgstr ""
 
-#: sharing-club.php:22
+#: sharing-club.php:23
 msgid "Please enter a valid date."
 msgstr ""
 
-#: sharing-club.php:25
+#: sharing-club.php:26
 msgid "Please select a user."
 msgstr ""
 
-#: sharing-club.php:26
+#: sharing-club.php:27
 msgid "Please select an object."
 msgstr ""
 
-#: sharing-club.php:122
+#: sharing-club.php:123
 msgid "Your current borrowed items"
 msgstr ""
 
-#: sharing-club.php:123
-msgid "Here is your overview of currently lent items:"
-msgstr ""
-
 #: sharing-club.php:124
-msgid "Item"
+msgid "Dear lender,"
 msgstr ""
 
 #: sharing-club.php:125
+msgid "Here is your overview of currently lent items:"
+msgstr ""
+
+#: sharing-club.php:126
+msgid "Item"
+msgstr ""
+
+#: sharing-club.php:127
 msgid "With kind regards,"
 msgstr ""
 
-#: sharing-club.php:144
-#: sharing-club.php:147
+#: sharing-club.php:146
+#: sharing-club.php:149
 msgid "Objects"
 msgstr ""
 
-#: sharing-club.php:148
+#: sharing-club.php:150
 msgid "All objects"
 msgstr ""
 
-#: sharing-club.php:149
-#: sharing-club.php:157
+#: sharing-club.php:151
+#: sharing-club.php:159
 msgid "Add object"
 msgstr ""
 
-#: sharing-club.php:150
+#: sharing-club.php:152
 msgid "Edit object"
 msgstr ""
 
-#: sharing-club.php:151
+#: sharing-club.php:153
 msgid "New object"
 msgstr ""
 
-#: sharing-club.php:152
+#: sharing-club.php:154
 msgid "View object"
 msgstr ""
 
-#: sharing-club.php:153
+#: sharing-club.php:155
 msgid "Search object"
 msgstr ""
 
-#: sharing-club.php:154
+#: sharing-club.php:156
 msgid "Object not found"
 msgstr ""
 
-#: sharing-club.php:155
+#: sharing-club.php:157
 msgid "Trashed object not found"
 msgstr ""
 
-#: sharing-club.php:366
+#: sharing-club.php:368
 #, php-format
 msgid "%s requested an object"
 msgstr ""
 
-#: sharing-club.php:367
+#: sharing-club.php:369
 msgid "There's a new request for lending. You can manage the requests connecting to :"
 msgstr ""
 

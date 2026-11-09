@@ -121,7 +121,8 @@ function scwp_send_weekly_lending_digest($activity_date = null) {
 
         $site_name = get_bloginfo('name');
         $subject = __('Your current borrowed items', 'sharing-club') . ' - ' . $site_name;
-        $message = '<p>' . esc_html__('Here is your overview of currently lent items:', 'sharing-club') . '</p>';
+        $message = '<p>' . esc_html__('Dear lender,', 'sharing-club') . '</p>';
+        $message .= '<p>' . esc_html__('Here is your overview of currently lent items:', 'sharing-club') . '</p>';
         $message .= '<table style="border-collapse: collapse; width: 100%;"><thead><tr><th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">' . esc_html__('Item', 'sharing-club') . '</th><th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">' . esc_html__('Return date', 'sharing-club') . '</th></tr></thead><tbody>' . $rows . '</tbody></table>';
         $message .= '<p>' . esc_html__('With kind regards,', 'sharing-club') . '<br>' . esc_html($site_name) . '</p>';
         wp_mail($user->user_email, $subject, $message, array('Content-Type: text/html; charset=UTF-8'));
