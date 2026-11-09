@@ -149,8 +149,15 @@ class Lending_Table extends WP_List_Table {
         $this->_column_headers = array($columns, $hidden, $sortable);
         $this->process_bulk_action();
         
-        $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_key($_REQUEST['orderby']) : 'comment_date_gmt'; //If no sort, default to title
-        $order = (!empty($_REQUEST['order'])) ? sanitize_key($_REQUEST['order']) : 'desc'; //If no order, default to asc
+        $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_key($_REQUEST['orderby']) : 'comment_date_gmt';
+        $orderby_columns = array(
+            'name' => 'name',
+            'username' => 'username',
+            'fr_date_start' => 'lending.comment_date',
+            'fr_date_end' => 'lending.comment_date_gmt',
+        );
+        $orderby = $orderby_columns[$orderby] ?? 'lending.comment_date_gmt';
+        $order = (!empty($_REQUEST['order']) && sanitize_key($_REQUEST['order']) === 'asc') ? 'ASC' : 'DESC';
 
         $filter = !empty($_REQUEST['user_id']) ? ' AND user_id = ' . intval($_REQUEST['user_id']) : '';
         $object_id = !empty($_REQUEST['object_id']) ? intval($_REQUEST['object_id']) : 0;
