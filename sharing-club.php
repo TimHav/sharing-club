@@ -8,6 +8,7 @@ Version: 1.3.1
 Author URI: http://netdelight.be/
 Text Domain: sharing-club
 Domain Path: /languages/
+Update URI: false
 */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
